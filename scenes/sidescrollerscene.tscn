@@ -1,0 +1,58 @@
+[gd_scene load_steps=10 format=3 uid="uid://ccpsobti1jrwo"]
+
+[ext_resource type="Script" path="res://scripts/player/Player.gd" id="1_fjj2b"]
+
+[sub_resource type="Gradient" id="Gradient_g20fe"]
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_qwf1f"]
+gradient = SubResource("Gradient_g20fe")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ra24e"]
+size = Vector2(510, 510)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_1mos5"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_ldfsn"]
+noise = SubResource("FastNoiseLite_1mos5")
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_tk5t3"]
+
+[sub_resource type="Gradient" id="Gradient_sl1k3"]
+colors = PackedColorArray(0.533333, 0, 0, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_ixdsa"]
+gradient = SubResource("Gradient_sl1k3")
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(575, 324.5)
+scale = Vector2(4.50781, 649)
+texture = SubResource("GradientTexture1D_qwf1f")
+
+[node name="Floor" type="StaticBody2D" parent="."]
+position = Vector2(607, 328)
+scale = Vector2(3, 0.2)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Floor"]
+scale = Vector2(0.999999, 1)
+shape = SubResource("RectangleShape2D_ra24e")
+
+[node name="Sprite2D2" type="Sprite2D" parent="Floor"]
+scale = Vector2(1, 1)
+texture = SubResource("NoiseTexture2D_ldfsn")
+
+[node name="CharacterBody2D" type="CharacterBody2D" parent="."]
+position = Vector2(96, 186)
+script = ExtResource("1_fjj2b")
+
+[node name="PlayerCol" type="CollisionShape2D" parent="CharacterBody2D"]
+shape = SubResource("CapsuleShape2D_tk5t3")
+
+[node name="PlayerSprite" type="Sprite2D" parent="CharacterBody2D"]
+scale = Vector2(0.078125, 30)
+texture = SubResource("GradientTexture1D_ixdsa")
+
+[node name="Camera2D" type="Camera2D" parent="CharacterBody2D"]
+zoom = Vector2(2, 2)
