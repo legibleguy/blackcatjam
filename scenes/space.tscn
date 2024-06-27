@@ -1,3 +1,29 @@
-[gd_scene format=3 uid="uid://buv258elxdw06"]
+[gd_scene load_steps=6 format=3 uid="uid://buv258elxdw06"]
+
+[ext_resource type="PackedScene" uid="uid://ds0q23xnmslfy" path="res://scripts/space/space-object.tscn" id="1_a4ay0"]
+[ext_resource type="Script" path="res://scenes/space.gd" id="1_sokdp"]
+[ext_resource type="Script" path="res://scenes/MainGravityArea.gd" id="1_vggjd"]
+[ext_resource type="Texture2D" uid="uid://xmu8d7067l4m" path="res://placeholders/Ice.png" id="3_eoavi"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_mqjww"]
+radius = 4110.01
 
 [node name="space" type="Node2D"]
+script = ExtResource("1_sokdp")
+spaceObjectScene = ExtResource("1_a4ay0")
+targetSpaceObjectCount = 64
+
+[node name="MainGravityArea" type="Area2D" parent="."]
+script = ExtResource("1_vggjd")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="MainGravityArea"]
+shape = SubResource("CircleShape2D_mqjww")
+
+[node name="Sprite2D" type="Sprite2D" parent="MainGravityArea"]
+visible = false
+modulate = Color(0, 0, 0, 1)
+scale = Vector2(132.791, 133.028)
+texture = ExtResource("3_eoavi")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(0.075, 0.075)
