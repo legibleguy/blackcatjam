@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://b341l1ynihh4m"]
+
+[ext_resource type="Script" path="res://scenes/MainGravityArea.gd" id="1_7qn1w"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_mqjww"]
+radius = 1400.0
+
+[node name="MainGravityArea" type="Area2D" groups=["orbits"]]
+script = ExtResource("1_7qn1w")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_mqjww")

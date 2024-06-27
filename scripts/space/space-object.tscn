@@ -4,14 +4,14 @@
 [ext_resource type="Script" path="res://scripts/space/space-object.gd" id="1_fm6pb"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_8s51u"]
-radius = 25.0
+radius = 28.0
 
 [node name="space-object" type="RigidBody2D"]
-inertia = 1.18
+inertia = 1.0
 script = ExtResource("1_fm6pb")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="HitCollision" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_8s51u")
 
-[node name="Baren" type="Sprite2D" parent="."]
+[node name="Sprite" type="Sprite2D" parent="."]
 texture = ExtResource("1_244pe")
