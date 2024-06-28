@@ -39,6 +39,7 @@ func _reinitialize_away_factor():
 	elif curr_orbit_behavior == ORBIT_BEHAVIOR.PULL:
 		awayFromCenter = awayFromCenter_pullin
 	elif curr_orbit_behavior == ORBIT_BEHAVIOR.AVOID:
+		reparent(_get_curr_orbit(), true)
 		awayFromCenter = awayFromCenter_avoid
 	
 
@@ -81,7 +82,20 @@ func keep_body_in(orbit_pos, orbit_radius, delta):
 		targetVelocity = (targetPoint - position + orbit_pos.direction_to(position).orthogonal() * speed)
 	move_and_collide(targetVelocity)
 
+func body_avoid(orbit_pos, orbit_radius, delta):
+	var targetPoint = orbit_pos + (orbit_pos.direction_to(position) * orbit_radius * awayFromCenter_avoid)
+	speed = remap(orbit_radius, 800, 2000, 1, 20) * global_speed_scale
+	if useSmoothVelocity:
+		var interpSpeed = remap(orbit_radius, 800, 2000, 0.1, 0.5)
+		targetVelocity = targetVelocity + ((targetPoint - position + orbit_pos.direction_to(position).orthogonal() * speed) - targetVelocity) * (delta * interpSpeed)
+	else:
+		targetVelocity = (targetPoint - position + orbit_pos.direction_to(position).orthogonal() * speed)
+	move_and_collide(targetVelocity)
+
 func _physics_process(delta):
+	
+	$black_hole_rotation.rotation += 0.01
+	
 	queue_redraw()
 	if orbits.size() > 0:
 		var curr_orbit_radius : float = 0
@@ -108,7 +122,7 @@ func _physics_process(delta):
 			awayFromCenter = awayFromCenter + (0 - awayFromCenter) * (delta * 0.8)
 			keep_body_in(curr_orbit.position, curr_orbit_radius, delta)
 		elif curr_orbit_behavior == ORBIT_BEHAVIOR.AVOID:
-			keep_body_in(curr_orbit.position, curr_orbit_radius, delta)
+			pass
 
 	else:
 		move_and_collide(Vector2.DOWN * 9.8)

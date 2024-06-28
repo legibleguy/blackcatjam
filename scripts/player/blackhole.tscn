@@ -39,3 +39,5 @@ text = "LMB to start eating
 [node name="MainGravityArea" parent="." instance=ExtResource("3_wjk8f")]
 scale = Vector2(0.133471, 0.133471)
 orbitBehavior = 3
+
+[node name="black_hole_rotation" type="Node2D" parent="."]
