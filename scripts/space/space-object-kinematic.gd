@@ -10,6 +10,11 @@ var awayFromCenter_keepin : float = 0.25
 var awayFromCenter_pullin : float = 0.9
 var awayFromCenter_avoid : float = 0.9
 
+var avoidanceProgress : float = 0.0
+var attachedWithRotation : bool = false
+var avoidanceTargetRotation : float = 0.0
+const AVOIDANCEROTATIONDELTA = 180
+
 var speed : float = 65
 var global_speed_scale : float = 0.15
 var useSmoothVelocity : bool = false
@@ -39,7 +44,16 @@ func _reinitialize_away_factor():
 	elif curr_orbit_behavior == ORBIT_BEHAVIOR.PULL:
 		awayFromCenter = awayFromCenter_pullin
 	elif curr_orbit_behavior == ORBIT_BEHAVIOR.AVOID:
-		reparent(_get_curr_orbit(), true)
+		avoidanceProgress = 0.0
+		
+		var rotationParent = _get_curr_orbit().get_parent().get_node("black_hole_rotation")
+		attachedWithRotation = rotationParent != null
+		if attachedWithRotation:
+			reparent(rotationParent)
+		else:
+			reparent(_get_curr_orbit(), true)
+			printerr("planet eneterd in avoidance mode but couldn't find the rotation parent")
+		
 		awayFromCenter = awayFromCenter_avoid
 	
 
@@ -83,18 +97,11 @@ func keep_body_in(orbit_pos, orbit_radius, delta):
 	move_and_collide(targetVelocity)
 
 func body_avoid(orbit_pos, orbit_radius, delta):
-	var targetPoint = orbit_pos + (orbit_pos.direction_to(position) * orbit_radius * awayFromCenter_avoid)
-	speed = remap(orbit_radius, 800, 2000, 1, 20) * global_speed_scale
-	if useSmoothVelocity:
-		var interpSpeed = remap(orbit_radius, 800, 2000, 0.1, 0.5)
-		targetVelocity = targetVelocity + ((targetPoint - position + orbit_pos.direction_to(position).orthogonal() * speed) - targetVelocity) * (delta * interpSpeed)
-	else:
-		targetVelocity = (targetPoint - position + orbit_pos.direction_to(position).orthogonal() * speed)
+	targetVelocity.x = targetVelocity.x + (0 - targetVelocity.x) * (delta * 8)
+	targetVelocity.y = targetVelocity.y + (0 - targetVelocity.y) * (delta * 8)
 	move_and_collide(targetVelocity)
 
 func _physics_process(delta):
-	
-	$black_hole_rotation.rotation += 0.01
 	
 	queue_redraw()
 	if orbits.size() > 0:
@@ -122,7 +129,17 @@ func _physics_process(delta):
 			awayFromCenter = awayFromCenter + (0 - awayFromCenter) * (delta * 0.8)
 			keep_body_in(curr_orbit.position, curr_orbit_radius, delta)
 		elif curr_orbit_behavior == ORBIT_BEHAVIOR.AVOID:
-			pass
+			targetVelocity.x = targetVelocity.x + (0 - targetVelocity.x) * (delta * 7)
+			targetVelocity.y = targetVelocity.y + (0 - targetVelocity.y) * (delta * 7)
+			move_and_collide(targetVelocity)
+			
+			avoidanceProgress = avoidanceProgress + (1 - avoidanceProgress) * (delta * 6)
+			if avoidanceProgress > 0.99:
+				if attachedWithRotation: reparent(get_parent().get_parent().get_parent())	
+				else: reparent(get_parent().get_parent())
+				
+				if attachedWithRotation: print(get_parent().get_parent().get_parent())	
+				else: print(get_parent().get_parent())
 
 	else:
 		move_and_collide(Vector2.DOWN * 9.8)
