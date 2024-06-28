@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://cr2gs775xj7pb"
+path="res://.godot/imported/Black Cat while in Space.mp3-0888dfa3e3fc89598a8baf5677f0138d.mp3str"
+
+[deps]
+
+source_file="res://Audio Assets/Music/Main theme/Black Cat while in Space.mp3"
+dest_files=["res://.godot/imported/Black Cat while in Space.mp3-0888dfa3e3fc89598a8baf5677f0138d.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://cee20o42uq5k1"
+path="res://.godot/imported/Cutscenes Theme - Loop.wav-54b672ef1247b58dc68bdb2c3ed1d66b.sample"
+
+[deps]
+
+source_file="res://Audio Assets/Music/Cutscenes/Cutscenes Theme - Loop.wav"
+dest_files=["res://.godot/imported/Cutscenes Theme - Loop.wav-54b672ef1247b58dc68bdb2c3ed1d66b.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0
