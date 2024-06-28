@@ -39,3 +39,5 @@ scale = Vector2(0.133471, 0.133471)
 orbitBehavior = 3
 
 [node name="black_hole_rotation" type="Node2D" parent="."]
+
+[connection signal="child_entered_tree" from="." to="." method="_on_child_entered_tree"]

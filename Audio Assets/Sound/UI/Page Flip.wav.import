@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://c2xo0ivsaxoss"
+path="res://.godot/imported/Page Flip.wav-367096553761201c1b61651d378ae1c5.sample"
+
+[deps]
+
+source_file="res://Audio Assets/Sound/UI/Page Flip.wav"
+dest_files=["res://.godot/imported/Page Flip.wav-367096553761201c1b61651d378ae1c5.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0
