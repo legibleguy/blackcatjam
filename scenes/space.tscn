@@ -2,16 +2,21 @@
 
 [ext_resource type="Script" path="res://scenes/space.gd" id="1_sokdp"]
 [ext_resource type="PackedScene" uid="uid://c58k7mpm0u853" path="res://scripts/space/space-object-kinematic.tscn" id="2_uaq1s"]
-[ext_resource type="PackedScene" uid="uid://bu0y2xnjvcg4u" path="res://scripts/player/cathole.tscn" id="4_3frgj"]
+[ext_resource type="PackedScene" uid="uid://dtq02oc3hm5sg" path="res://scripts/space/orbit-avoid.tscn" id="4_vaxqw"]
 [ext_resource type="PackedScene" uid="uid://b341l1ynihh4m" path="res://scripts/space/orbit.tscn" id="5_po61e"]
 
 [node name="root" type="Node2D"]
 script = ExtResource("1_sokdp")
 spaceObjectScene = ExtResource("2_uaq1s")
 targetSpaceObjectCount = 128
+numRadiusSubdivisions = 6
 
 [node name="MainGravityArea" parent="." instance=ExtResource("5_po61e")]
 scale = Vector2(5.46357, 5.46357)
 
-[node name="cathole" parent="." instance=ExtResource("4_3frgj")]
-position = Vector2(2824, -2362)
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(0.03, 0.03)
+
+[node name="orbit-avoid" parent="." instance=ExtResource("4_vaxqw")]
+position = Vector2(1309, -1309)
+scale = Vector2(2.80432, 2.80432)
