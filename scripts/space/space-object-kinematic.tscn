@@ -1,8 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://c58k7mpm0u853"]
+[gd_scene load_steps=4 format=3 uid="uid://c58k7mpm0u853"]
 
 [ext_resource type="Script" path="res://scripts/space/space-object-kinematic.gd" id="1_o2isv"]
 [ext_resource type="Texture2D" uid="uid://doog6k7p5rvox" path="res://placeholders/Baren.png" id="2_aqmnx"]
-[ext_resource type="Texture2D" uid="uid://bejajc4nboby4" path="res://icon.svg" id="3_c3vvq"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_8s51u"]
 radius = 28.0
@@ -16,17 +15,3 @@ shape = SubResource("CircleShape2D_8s51u")
 
 [node name="Sprite" type="Sprite2D" parent="."]
 texture = ExtResource("2_aqmnx")
-
-[node name="ForceDirection" type="Node2D" parent="."]
-
-[node name="SpriteForceDir" type="Sprite2D" parent="ForceDirection"]
-position = Vector2(-9, -47)
-rotation = 0.794097
-scale = Vector2(0.0418086, 0.19373)
-texture = ExtResource("3_c3vvq")
-
-[node name="SpriteForceDir2" type="Sprite2D" parent="ForceDirection"]
-position = Vector2(5, -47)
-rotation = -0.786957
-scale = Vector2(0.0418086, 0.19373)
-texture = ExtResource("3_c3vvq")

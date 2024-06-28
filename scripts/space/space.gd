@@ -2,11 +2,21 @@ extends Node2D
 @export_group("Planets Spawn")
 @export var spaceObjectScene : PackedScene
 @export var targetSpaceObjectCount : int
-@export var numRadiusSubdivisions : int = 4
+@export var numRadiusSubdivisions : int = 5
 @export var startSpawnAngle : float = 40
 var currentSpaceObjectCount : int = 0
 
-func _meet_space_object_count():
+@export_group("Player Player Spawn")
+@export var playerScene : PackedScene
+
+func _initialize_player(orbit_pos, orbit_radius):
+	if playerScene != null:
+		var spawndir : Vector2 = Vector2.UP * ((float(floor(numRadiusSubdivisions/2)) + 0.25)) / float(numRadiusSubdivisions) * orbit_radius
+		var playerObject : Node2D = playerScene.instantiate()
+		add_child(playerObject)
+		playerObject.position = orbit_pos + spawndir
+
+func _initialize_planets():
 	var mainArea = find_child("MainGravityArea")
 	
 	if (not mainArea == null) and mainArea.has_method("get_orbit_radius"):
@@ -31,10 +41,15 @@ func _meet_space_object_count():
 					newSpaceObject.set_away_value(awayFactor)
 				else:
 					printerr("space.gd: referencing an outdated method set_away_value()")
+					
+				if newSpaceObject.has_method("set_away_value_keep_in"):
+					newSpaceObject.set_away_value_keep_in(awayFactor)
+				else:
+					printerr("space.gd: referencing an outdated method set_away_value_keep_in()")
 				
 				add_child(newSpaceObject)
 				(newSpaceObject as Node2D).position = spawn_pos
-	
+		_initialize_player(mainArea.position, mainAreaRadius)
 	else:
 		if mainArea == null:
 			printerr("Couldn't find MainGravityArea")
@@ -43,7 +58,7 @@ func _meet_space_object_count():
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	_meet_space_object_count()
+	_initialize_planets()
 	
 func _draw():
 	var mainArea = find_child("MainGravityArea")

@@ -4,7 +4,12 @@ enum ORBIT_BEHAVIOR {PULL, PUSH, KEEP_IN, AVOID}
 
 var targetVelocity : Vector2 = Vector2.ZERO
 var orbits = []
-var awayFromCenter : float = 0.25
+
+var awayFromCenter : float = 0.25 #default is for KEEP_IN
+var awayFromCenter_keepin : float = 0.25
+var awayFromCenter_pullin : float = 0.9
+var awayFromCenter_avoid : float = 0.9
+
 var speed : float = 65
 var global_speed_scale : float = 0.15
 var useSmoothVelocity : bool = false
@@ -14,6 +19,9 @@ func _get_curr_orbit():
 
 func _get_body_radius() -> float:
 	return ($HitCollision.shape as CircleShape2D).radius
+
+func set_away_value_keep_in(newVal):
+	awayFromCenter_keepin = clampf(newVal, 0, 1)
 
 func set_away_value(newVal):
 	awayFromCenter = clampf(newVal, 0, 1)
@@ -27,11 +35,11 @@ func _reinitialize_away_factor():
 		set_process(false)
 		return
 	if curr_orbit_behavior == ORBIT_BEHAVIOR.KEEP_IN:
-		awayFromCenter = clampf(position.distance_to(_get_curr_orbit().position) / _get_curr_orbit().get_orbit_radius(), 0.25, 0.9)
+		awayFromCenter = awayFromCenter_keepin
 	elif curr_orbit_behavior == ORBIT_BEHAVIOR.PULL:
-		awayFromCenter = 0.8
+		awayFromCenter = awayFromCenter_pullin
 	elif curr_orbit_behavior == ORBIT_BEHAVIOR.AVOID:
-		awayFromCenter = 0.99
+		awayFromCenter = awayFromCenter_avoid
 	
 
 func _on_entered_orbit(body):
@@ -39,51 +47,16 @@ func _on_entered_orbit(body):
 	if body.is_in_group("orbits"):
 		orbits.push_back(body)
 		
-		var curr_orbit_behavior : ORBIT_BEHAVIOR
-		if body.has_method("get_orbit_behavior"):
-			curr_orbit_behavior = body.get_orbit_behavior()
-		else:
-			printerr("space-object.gd: referencing an outdated Orbit2D function get_orbit_behavior()")
-			set_process(false)
-			return
-		if curr_orbit_behavior == ORBIT_BEHAVIOR.KEEP_IN:
-			awayFromCenter = clampf(position.distance_to(_get_curr_orbit().position) / _get_curr_orbit().get_orbit_radius(), 0.25, 0.9)
-		elif curr_orbit_behavior == ORBIT_BEHAVIOR.PULL:
-			awayFromCenter = 0.8
-		elif curr_orbit_behavior == ORBIT_BEHAVIOR.AVOID:
-			awayFromCenter = 0.99
-		
-		#debug
-		var id : float = 50 * (orbits[orbits.size()-1].get_index() as float) / (orbits[orbits.size()-1].get_parent().get_child_count() as float)
-		$Sprite.modulate = Color(id, id, id)
+		_reinitialize_away_factor()
 
 func _on_exit_orbit(body):
 	queue_redraw()
 	if body.is_in_group("orbits") and body in orbits:
 		orbits.erase(body)
 		
-		#debug
 		if orbits.size() > 0:
 			
-			var curr_orbit_behavior : ORBIT_BEHAVIOR
-			if _get_curr_orbit().has_method("get_orbit_behavior"):
-				curr_orbit_behavior = _get_curr_orbit().get_orbit_behavior()
-			else:
-				printerr("space-object.gd: referencing an outdated Orbit2D function get_orbit_behavior()")
-				set_process(false)
-				return
-				
-			if curr_orbit_behavior == ORBIT_BEHAVIOR.KEEP_IN:
-				awayFromCenter = clampf(position.distance_to(_get_curr_orbit().position) / _get_curr_orbit().get_orbit_radius(), 0.25, 0.9)
-			elif curr_orbit_behavior == ORBIT_BEHAVIOR.PULL:
-				awayFromCenter = 0.8
-			elif curr_orbit_behavior == ORBIT_BEHAVIOR.AVOID:
-				awayFromCenter = 0.99
-			
-			var id : float = 50 * (orbits[orbits.size()-1].get_index() as float) / (orbits[orbits.size()-1].get_parent().get_child_count() as float)
-			$Sprite.modulate = Color(id, id, id)
-		else:
-			$Sprite.modulate = Color(0,0,0)
+			_reinitialize_away_factor()
 
 func _draw():
 	return
