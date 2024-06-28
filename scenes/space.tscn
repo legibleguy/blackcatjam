@@ -1,20 +1,17 @@
-[gd_scene load_steps=4 format=3 uid="uid://buv258elxdw06"]
+[gd_scene load_steps=5 format=3 uid="uid://buv258elxdw06"]
 
-[ext_resource type="PackedScene" uid="uid://ds0q23xnmslfy" path="res://scripts/space/space-object.tscn" id="1_a4ay0"]
 [ext_resource type="Script" path="res://scenes/space.gd" id="1_sokdp"]
+[ext_resource type="PackedScene" uid="uid://c58k7mpm0u853" path="res://scripts/space/space-object-kinematic.tscn" id="2_uaq1s"]
+[ext_resource type="PackedScene" uid="uid://bu0y2xnjvcg4u" path="res://scripts/player/cathole.tscn" id="4_3frgj"]
 [ext_resource type="PackedScene" uid="uid://b341l1ynihh4m" path="res://scripts/space/orbit.tscn" id="5_po61e"]
 
 [node name="root" type="Node2D"]
 script = ExtResource("1_sokdp")
-spaceObjectScene = ExtResource("1_a4ay0")
-targetSpaceObjectCount = 64
-
-[node name="Camera2D" type="Camera2D" parent="."]
-zoom = Vector2(0.1, 0.1)
+spaceObjectScene = ExtResource("2_uaq1s")
+targetSpaceObjectCount = 128
 
 [node name="MainGravityArea" parent="." instance=ExtResource("5_po61e")]
-scale = Vector2(3.99383, 3.99383)
+scale = Vector2(5.46357, 5.46357)
 
-[node name="MainGravityArea2" parent="." instance=ExtResource("5_po61e")]
-position = Vector2(839, 575)
-scale = Vector2(0.285555, 0.285555)
+[node name="cathole" parent="." instance=ExtResource("4_3frgj")]
+position = Vector2(2824, -2362)

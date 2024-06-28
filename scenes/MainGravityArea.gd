@@ -26,3 +26,5 @@ func on_body_exited(body):
 func _ready():
 	body_entered.connect(on_body_enetered)
 	body_exited.connect(on_body_exited)
+	
+	print(get_orbit_radius())
