@@ -6,7 +6,7 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_8s51u"]
 radius = 28.0
 
-[node name="space-object" type="CharacterBody2D"]
+[node name="space-object" type="CharacterBody2D" groups=["planets"]]
 collision_mask = 2
 script = ExtResource("1_o2isv")
 
