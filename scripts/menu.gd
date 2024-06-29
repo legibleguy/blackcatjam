@@ -10,6 +10,7 @@ func _start_pressed():
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	RenderingServer.set_default_clear_color(Color(1,1,1))
 	
 	Input.set_custom_mouse_cursor(cursor_def)
 	Input.set_custom_mouse_cursor(cursor_point, Input.CURSOR_POINTING_HAND)

@@ -102,6 +102,8 @@ func _cutscene_over():
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	RenderingServer.set_default_clear_color(Color(0.1,0.1,0.1))
+	
 	$cutscenePlayer.cutscene_over.connect(_cutscene_over)
 	
 	_initialize_planets()
