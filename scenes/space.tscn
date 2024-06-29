@@ -15,5 +15,6 @@ playerScene = ExtResource("3_vh4up")
 
 [node name="MainGravityArea" parent="." instance=ExtResource("5_po61e")]
 scale = Vector2(5.46357, 5.46357)
+orbitBehavior = 2
 
 [node name="cutscenePlayer" parent="." instance=ExtResource("5_0weu8")]

@@ -1,6 +1,11 @@
 class_name SpaceObjectKinematic extends CharacterBody2D
 
 enum ORBIT_BEHAVIOR {PULL, PUSH, KEEP_IN, AVOID}
+enum MOVEMENT_STATE {FOLLOWING_ORBITS, IGNORE_ORBITS, IGNORE_ORBITS_KEEP_VELOCITY}
+const TIMEIGNORING : float = 3.0
+var ignoretime_left : float = 0.0
+
+var currMovementState : MOVEMENT_STATE = MOVEMENT_STATE.FOLLOWING_ORBITS
 
 var targetVelocity : Vector2 = Vector2.ZERO
 var orbits = []
@@ -12,9 +17,7 @@ var awayFromCenter_avoid : float = 0.9
 
 var avoidanceProgress : float = 0.0
 var attachedWithRotation : bool = false
-var avoidanceStartRotation : float = 0.0
-var avoidanceTargetRotation : float = 0.0
-const AVOIDANCEROTATIONDELTA = 180
+var avoidanceStartVel : Vector2 = Vector2.ZERO
 
 var speed : float = 65
 var global_speed_scale : float = 0.15
@@ -26,6 +29,11 @@ var paused_last_pos : Vector2 = Vector2.ZERO
 func _get_curr_orbit():
 	return orbits[orbits.size()-1]
 
+func _set_curr_movement_state(newMS : MOVEMENT_STATE):
+	currMovementState = newMS
+	if newMS == MOVEMENT_STATE.IGNORE_ORBITS or newMS == MOVEMENT_STATE.IGNORE_ORBITS_KEEP_VELOCITY:
+		ignoretime_left = TIMEIGNORING
+
 func _get_body_radius() -> float:
 	return ($HitCollision.shape as CircleShape2D).radius
 
@@ -34,6 +42,10 @@ func set_away_value_keep_in(newVal):
 
 func set_away_value(newVal):
 	awayFromCenter = clampf(newVal, 0, 1)
+
+func on_orbit_behavior_changed(in_orbit):
+	if _get_curr_orbit() == in_orbit:
+		_reinitialize_away_factor()
 
 func _reinitialize_away_factor():
 	var curr_orbit_behavior
@@ -49,16 +61,14 @@ func _reinitialize_away_factor():
 		awayFromCenter = awayFromCenter_pullin
 	elif curr_orbit_behavior == ORBIT_BEHAVIOR.AVOID:
 		avoidanceProgress = 0.0
+		avoidanceStartVel = targetVelocity
 		
 		var rotationParent = _get_curr_orbit().get_parent().get_node("black_hole_rotation")
-		attachedWithRotation = rotationParent != null
-		if attachedWithRotation:
+		if rotationParent != null:
 			reparent(rotationParent)
 		else:
 			reparent(_get_curr_orbit(), true)
 			printerr("planet eneterd in avoidance mode but couldn't find the rotation parent")
-		
-		avoidanceStartRotation = get_parent().rotation
 		
 		awayFromCenter = awayFromCenter_avoid
 	
@@ -69,15 +79,6 @@ func _on_entered_orbit(body):
 		orbits.push_back(body)
 		
 		_reinitialize_away_factor()
-
-func _on_exit_orbit(body):
-	queue_redraw()
-	if body.is_in_group("orbits") and body in orbits:
-		orbits.erase(body)
-		
-		if orbits.size() > 0:
-			
-			_reinitialize_away_factor()
 
 func _draw():
 	return
@@ -113,7 +114,21 @@ func _physics_process(delta):
 		position = paused_last_pos
 		return
 	
-	queue_redraw()
+	if currMovementState == MOVEMENT_STATE.IGNORE_ORBITS:
+		ignoretime_left -= delta
+		if ignoretime_left <= 0:
+			_set_curr_movement_state(MOVEMENT_STATE.FOLLOWING_ORBITS)
+		else:
+			return
+	elif currMovementState == MOVEMENT_STATE.IGNORE_ORBITS_KEEP_VELOCITY:
+		targetVelocity.x = targetVelocity.x + (0 - targetVelocity.x) * (delta * 3)
+		targetVelocity.y = targetVelocity.y + (0 - targetVelocity.y) * (delta * 3)
+		move_and_collide(targetVelocity)
+		
+		ignoretime_left -= delta
+		if ignoretime_left <= 0:
+			_set_curr_movement_state(MOVEMENT_STATE.FOLLOWING_ORBITS)
+	
 	if orbits.size() > 0:
 		var curr_orbit_radius : float = 0
 		var curr_orbit_behavior : ORBIT_BEHAVIOR = ORBIT_BEHAVIOR.KEEP_IN
@@ -141,18 +156,12 @@ func _physics_process(delta):
 		elif curr_orbit_behavior == ORBIT_BEHAVIOR.AVOID:
 			targetVelocity.x = targetVelocity.x + (0 - targetVelocity.x) * (delta * 7)
 			targetVelocity.y = targetVelocity.y + (0 - targetVelocity.y) * (delta * 7)
+			avoidanceProgress = avoidanceProgress + (1 - avoidanceProgress) * (delta * 1.0)
 			move_and_collide(targetVelocity)
 			
-			var progress = abs(get_parent().rotation - avoidanceStartRotation) / 180
-			print(rad_to_deg(get_parent().rotation))
-			
-			if avoidanceProgress > 0.99:
-				if attachedWithRotation: reparent(get_parent().get_parent().get_parent())	
-				else: reparent(get_parent().get_parent())
-				
-				if attachedWithRotation: print(get_parent().get_parent().get_parent())	
-				else: print(get_parent().get_parent())
-
+			if avoidanceProgress > 0.92:
+				targetVelocity = avoidanceStartVel.orthogonal() * 1.34
+				_set_curr_movement_state(MOVEMENT_STATE.IGNORE_ORBITS_KEEP_VELOCITY)
 	else:
 		move_and_collide(Vector2.DOWN * 9.8)
 

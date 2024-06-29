@@ -1,6 +1,9 @@
 class_name Blackhole extends CharacterBody2D
 
+enum ORBIT_BEHAVIOR {PULL, PUSH, KEEP_IN, AVOID}
+
 const SPEED = 300.0
+const SPINSPEED : float = 3.34
 
 var is_player : bool = true
 var physics_paused: bool = false
@@ -18,10 +21,16 @@ func _physics_process(delta: float) -> void:
 		return
 	
 	if $black_hole_rotation != null:
-		$black_hole_rotation.rotate(deg_to_rad(1))
-		if abs(rad_to_deg($black_hole_rotation.rotation)) > 360.0:
-			var newRot = -sign(rad_to_deg($black_hole_rotation.rotation)) * (360 - (abs(rad_to_deg($black_hole_rotation.rotation)) - 360 ))
-			$black_hole_rotation.rotation = deg_to_rad(newRot)
+		$black_hole_rotation.rotate(deg_to_rad(-SPINSPEED))
+		$black_hole_rotation/BlackHoleSprite/BlackHoleSpriteInner.rotate(deg_to_rad(-SPINSPEED))
+		
+		if abs(rad_to_deg($black_hole_rotation/BlackHoleSprite/BlackHoleSpriteInner.rotation)) > 360.0:
+			var newRot = -sign(rad_to_deg($black_hole_rotation/BlackHoleSprite/BlackHoleSpriteInner.rotation)) * (360 - (abs(rad_to_deg($black_hole_rotation/BlackHoleSprite/BlackHoleSpriteInner.rotation)) - 360 ))
+			$black_hole_rotation/BlackHoleSprite/BlackHoleSpriteInner.rotation = deg_to_rad(newRot)
+		
+		if abs(rad_to_deg($black_hole_rotation/BlackHoleSprite/BlackHoleSpriteInner.rotation)) > 360.0:
+			var newRot = -sign(rad_to_deg($black_hole_rotation/BlackHoleSprite/BlackHoleSpriteInner.rotation)) * (360 - (abs(rad_to_deg($black_hole_rotation/BlackHoleSprite/BlackHoleSpriteInner.rotation)) - 360 ))
+			$black_hole_rotation/BlackHoleSprite/BlackHoleSpriteInner.rotation = deg_to_rad(newRot)
 	else:
 		printerr("blackhole.gd: couldn't access $black_hole_rotation node")
 
@@ -34,7 +43,11 @@ func _physics_process(delta: float) -> void:
 		velocity.y = -SPEED
 	elif Input.is_action_pressed("move_d") and not Input.is_action_pressed("move_u"):
 		velocity.y = SPEED
-
+	
+#	if Input.is_action_just_pressed("interact"):
+#		$MainGravityArea.set_orbit_behavior(ORBIT_BEHAVIOR.PULL)
+#	elif Input.is_action_just_released("interact"):
+#		$MainGravityArea.set_orbit_behavior(ORBIT_BEHAVIOR.AVOID)
 	move_and_slide()
 
 func pause_requested():
