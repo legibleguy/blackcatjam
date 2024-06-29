@@ -51,9 +51,20 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 
 func pause_requested():
+	var playerStuffRef = get_node("PlayerStuff")
+	if playerStuffRef != null:
+		playerStuffRef.pause_requested()
+	
 	print("player: pause received!")
 	physics_paused = true
 	paused_last_pos = position
+	set_process(false)
 
-func unapause():
+func unpause():
+	var playerStuffRef = get_node("PlayerStuff")
+	if playerStuffRef != null:
+		playerStuffRef.unpause()
+
+	print("player: unpause received!")
 	physics_paused = false
+	set_process(true)

@@ -171,6 +171,8 @@ func _physics_process(delta):
 func pause_requested():
 	physics_paused = true
 	paused_last_pos = position
+	set_process(false)
 
-func unapause():
+func unpause():
 	physics_paused = false
+	set_process(true)

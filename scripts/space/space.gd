@@ -12,6 +12,24 @@ var currentSpaceObjectCount : int = 0
 var playerReference
 
 var currentLevel : int = 0
+const NUM_LEVELS = 5
+
+func _on_level_timeout():
+	currentLevel += 1
+	_play_cutscene(currentLevel)
+
+func _post_cutscene_level_init():
+	if currentLevel == 0:
+		_initialize_planets()
+		_initialize_player()
+	elif currentLevel == 1:
+		pass
+	elif currentLevel == 2:
+		pass
+	elif currentLevel == 3:
+		pass
+	else:
+		get_tree().change_scene_to_file("res://scenes/menu.tscn")
 
 func _initialize_player():
 	var mainArea = find_child("MainGravityArea")
@@ -27,6 +45,11 @@ func _initialize_player():
 			playerObject.position = orbit_pos + spawndir
 			playerObject.scale = Vector2(spawnscale, spawnscale)
 			playerReference = playerObject
+			
+			var gameovertimer = playerReference.find_child("GameOverTimer")
+			if gameovertimer != null and (gameovertimer as Timer) != null:
+				print("Timeout event registered")
+				gameovertimer.timeout.connect(_on_level_timeout)
 
 func _initialize_planets():
 	var mainArea = find_child("MainGravityArea")
@@ -70,11 +93,10 @@ func _initialize_planets():
 			printerr("space.gd: referencing an outdated method get_orbit_radius in MainGravityArea.gd")
 
 func _play_cutscene(idx : int):
-#	for child in get_children(true):
-#		if child.is_in_group("pauseable"):
-#			if child.has_method("on_pause_requested"):
-#				child.on_pause_requested()
-	get_tree().call_group("pauseable", "on_pause_requested")
+	for child in get_children(true):
+		if child.is_in_group("pauseable"):
+			if child.has_method("pause_requested"):
+				child.pause_requested()
 
 	
 	if playerReference != null:
@@ -85,11 +107,10 @@ func _play_cutscene(idx : int):
 	$cutscenePlayer.init_cutscene(idx)
 
 func _cutscene_over():
-#	for child in get_children(true):
-#		if child.is_in_group("pauseable"):
-#			if child.has_method("unpause"):
-#				child.pause.requested()
-	get_tree().call_group("pauseable", "unpause")
+	for child in get_children(true):
+		if child.is_in_group("pauseable"):
+			if child.has_method("unpause"):
+				child.unpause()
 	
 	$cutscenePlayer/Main/Camera2D.enabled = false
 	
@@ -100,20 +121,23 @@ func _cutscene_over():
 			print("camera re enabled")
 	
 	print("cutscene over")
-	
+	_post_cutscene_level_init()
 	
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	RenderingServer.set_default_clear_color(Color(0.1,0.1,0.1))
-	
 	$cutscenePlayer.cutscene_over.connect(_cutscene_over)
 	
-	_initialize_planets()
+#	_initialize_planets()
 	
-	_initialize_player()
+#	_initialize_player()
 	
 	_play_cutscene(currentLevel)
+
+func _physics_process(delta):
+	if $ParallaxBackground/ColorRect.material != null and playerReference != null:
+		$ParallaxBackground/ColorRect.material.set("shader_parameter/refpos", Vector4(-playerReference.position.x, -playerReference.position.y, 0, 0))
 	
 func _draw():
 	var mainArea = find_child("MainGravityArea")

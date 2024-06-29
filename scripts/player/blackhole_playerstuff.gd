@@ -4,7 +4,6 @@ var time_started = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
 	$GameOverTimer.start()
 	
 	var minutes : int = floori($GameOverTimer.time_left / 60)
@@ -26,12 +25,11 @@ func _process(delta):
 		$CanvasLayer/VBoxContainer/TimeLabel.text = str_mins + ":" + str_secs
 
 func pause_requested():
-	if not time_started:
 		$GameOverTimer.paused = true
 		$CanvasLayer/VBoxContainer/TimeLabel.visible = false
 	
 
-func unapause():
+func unpause():
 	if time_started:
 		$GameOverTimer.paused = false
 		$CanvasLayer/VBoxContainer/TimeLabel.visible = true
