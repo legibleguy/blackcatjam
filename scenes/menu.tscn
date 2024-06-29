@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://ntlf2ac8s3c1"]
+[gd_scene load_steps=5 format=3 uid="uid://ntlf2ac8s3c1"]
 
 [ext_resource type="Script" path="res://scripts/menu.gd" id="1_ovsat"]
 [ext_resource type="FontFile" uid="uid://dnjaetxs8shbd" path="res://fonts/Spacecat-Regular.ttf" id="2_g68rl"]
+[ext_resource type="Texture2D" uid="uid://dcmsx37ylyqvc" path="res://scenes/menu/manucat.tres" id="2_lpk0d"]
 
 [sub_resource type="Theme" id="Theme_2nq13"]
 default_font = ExtResource("2_g68rl")
@@ -9,12 +10,18 @@ default_font_size = 64
 
 [node name="menu" type="Control"]
 layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_ovsat")
+
+[node name="Manucat" type="Sprite2D" parent="."]
+scale = Vector2(0.6, 0.6)
+texture = ExtResource("2_lpk0d")
 
 [node name="Start" type="Button" parent="."]
 self_modulate = Color(1, 1, 1, 0)
@@ -25,9 +32,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -96.0
-offset_top = 91.0
+offset_top = 170.0
 offset_right = 96.0
-offset_bottom = 141.0
+offset_bottom = 220.0
 grow_horizontal = 2
 grow_vertical = 2
 text = "Start"

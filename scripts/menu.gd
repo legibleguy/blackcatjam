@@ -4,7 +4,7 @@ var cursor_def = load("res://scenes/menu/cursor_default.png")
 var cursor_point = load("res://scenes/menu/cursor_highlight.png")
 
 func _start_pressed():
-	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
+#	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
 	print("pressed")
 	get_tree().change_scene_to_file("res://scenes/space.tscn")
 
@@ -12,8 +12,8 @@ func _start_pressed():
 func _ready():
 	RenderingServer.set_default_clear_color(Color(1,1,1))
 	
-	Input.set_custom_mouse_cursor(cursor_def)
-	Input.set_custom_mouse_cursor(cursor_point, Input.CURSOR_POINTING_HAND)
+#	Input.set_custom_mouse_cursor(cursor_def)
+#	Input.set_custom_mouse_cursor(cursor_point, Input.CURSOR_POINTING_HAND)
 	
 	var start_button = get_node("Start")
 	if start_button != null:
