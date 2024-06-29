@@ -1,0 +1,16 @@
+[gd_resource type="AnimatedTexture" load_steps=5 format=3 uid="uid://gym6dvwfp3pg"]
+
+[ext_resource type="Texture2D" uid="uid://doog6k7p5rvox" path="res://placeholders/Baren.png" id="1_35yuh"]
+[ext_resource type="Texture2D" uid="uid://c8rkioc3glc08" path="res://placeholders/Black_hole.png" id="2_l20q8"]
+[ext_resource type="Texture2D" uid="uid://xmu8d7067l4m" path="res://placeholders/Ice.png" id="3_8wxmg"]
+[ext_resource type="Texture2D" uid="uid://dgob1xmmhvfc2" path="res://placeholders/Lava.png" id="4_vv80m"]
+
+[resource]
+frames = 4
+frame_0/texture = ExtResource("1_35yuh")
+frame_1/texture = ExtResource("2_l20q8")
+frame_1/duration = 1.0
+frame_2/texture = ExtResource("3_8wxmg")
+frame_2/duration = 1.0
+frame_3/texture = ExtResource("4_vv80m")
+frame_3/duration = 1.0

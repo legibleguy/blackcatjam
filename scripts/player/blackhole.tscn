@@ -7,7 +7,7 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_0rnqc"]
 radius = 25.02
 
-[node name="Blackhole" type="CharacterBody2D"]
+[node name="Blackhole" type="CharacterBody2D" groups=["pauseable"]]
 script = ExtResource("1_n1usp")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -18,7 +18,7 @@ disabled = true
 modulate = Color(0, 0, 0, 1)
 texture = ExtResource("2_4wqd8")
 
-[node name="Camera2D" type="Camera2D" parent="."]
+[node name="PlayerCamera" type="Camera2D" parent="." groups=["pauseable"]]
 
 [node name="DebugLabel" type="Label" parent="."]
 offset_left = -73.0

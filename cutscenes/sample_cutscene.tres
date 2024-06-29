@@ -1,0 +1,31 @@
+[gd_resource type="Resource" script_class="Cutscene" load_steps=9 format=3 uid="uid://djcvb4crfa2bb"]
+
+[ext_resource type="Texture2D" uid="uid://gym6dvwfp3pg" path="res://cutscenes/sample/new_animated_texture.tres" id="1_s2n0r"]
+[ext_resource type="Script" path="res://cutscenes/Cutscene.gd" id="1_ywemr"]
+[ext_resource type="Script" path="res://cutscenes/CutsceneFrame.gd" id="2_6foil"]
+[ext_resource type="Texture2D" uid="uid://bejajc4nboby4" path="res://icon.svg" id="3_g3y7t"]
+[ext_resource type="Texture2D" uid="uid://cd153e0rgbv6r" path="res://cutscenes/sample/autotile_tileset.png" id="4_hn3ip"]
+
+[sub_resource type="Resource" id="Resource_8r766"]
+script = ExtResource("2_6foil")
+cutsceneSheet = ExtResource("1_s2n0r")
+cutsceneCaption = "Test Caption 1 For the Test Cutscene 1"
+sheetFromPath = false
+sheetPath = ""
+
+[sub_resource type="AnimatedTexture" id="AnimatedTexture_ythhp"]
+frames = 2
+frame_0/texture = ExtResource("3_g3y7t")
+frame_1/texture = ExtResource("4_hn3ip")
+frame_1/duration = 1.0
+
+[sub_resource type="Resource" id="Resource_f0v4d"]
+script = ExtResource("2_6foil")
+cutsceneSheet = SubResource("AnimatedTexture_ythhp")
+cutsceneCaption = "another frame"
+sheetFromPath = false
+sheetPath = ""
+
+[resource]
+script = ExtResource("1_ywemr")
+cutsceneFrames = [SubResource("Resource_8r766"), SubResource("Resource_f0v4d")]

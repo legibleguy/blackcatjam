@@ -20,6 +20,9 @@ var speed : float = 65
 var global_speed_scale : float = 0.15
 var useSmoothVelocity : bool = false
 
+var physics_paused: bool = false
+var paused_last_pos : Vector2 = Vector2.ZERO
+
 func _get_curr_orbit():
 	return orbits[orbits.size()-1]
 
@@ -106,6 +109,10 @@ func body_avoid(orbit_pos, orbit_radius, delta):
 
 func _physics_process(delta):
 	
+	if physics_paused:
+		position = paused_last_pos
+		return
+	
 	queue_redraw()
 	if orbits.size() > 0:
 		var curr_orbit_radius : float = 0
@@ -148,3 +155,10 @@ func _physics_process(delta):
 
 	else:
 		move_and_collide(Vector2.DOWN * 9.8)
+
+func pause_requested():
+	physics_paused = true
+	paused_last_pos = position
+
+func unapause():
+	physics_paused = false

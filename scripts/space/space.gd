@@ -8,6 +8,9 @@ var currentSpaceObjectCount : int = 0
 
 @export_group("Player Player Spawn")
 @export var playerScene : PackedScene
+var playerReference
+
+var currentLevel : int = 0
 
 func _initialize_player():
 	var mainArea = find_child("MainGravityArea")
@@ -20,6 +23,7 @@ func _initialize_player():
 			var playerObject : Node2D = playerScene.instantiate()
 			add_child(playerObject)
 			playerObject.position = orbit_pos + spawndir
+			playerReference = playerObject
 
 func _initialize_planets():
 	var mainArea = find_child("MainGravityArea")
@@ -60,11 +64,46 @@ func _initialize_planets():
 		elif not (mainArea.has_method("get_orbit_radius")):
 			printerr("space.gd: referencing an outdated method get_orbit_radius in MainGravityArea.gd")
 
+func _play_cutscene(idx : int):
+	for child in get_children(true):
+		if child.is_in_group("pauseable"):
+			if child.has_method("on_pause_requested"):
+				child.on_pause_requested()
+	
+	if playerReference != null:
+		var camera_ref = playerReference.get_node("PlayerCamera")
+		if camera_ref != null:
+			(camera_ref as Camera2D).enabled = false
+	$cutscenePlayer/Main/Camera2D.enabled = true
+	$cutscenePlayer.init_cutscene(idx)
+
+func _cutscene_over():
+	for child in get_children(true):
+		if child.is_in_group("pauseable"):
+			if child.has_method("unpause"):
+				child.pause.requested()
+	
+	$cutscenePlayer/Main/Camera2D.enabled = false
+	
+	if playerReference != null:
+		var camera_ref = playerReference.get_node("PlayerCamera")
+		if camera_ref != null:
+			(camera_ref as Camera2D).enabled = true
+			print("camera re enabled")
+	
+	print("cutscene over")
+	
+	
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	$cutscenePlayer.cutscene_over.connect(_cutscene_over)
+	
 	_initialize_planets()
 	
 	_initialize_player()
+	
+	_play_cutscene(currentLevel)
 	
 func _draw():
 	var mainArea = find_child("MainGravityArea")
