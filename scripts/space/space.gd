@@ -70,28 +70,31 @@ func _initialize_planets():
 			printerr("space.gd: referencing an outdated method get_orbit_radius in MainGravityArea.gd")
 
 func _play_cutscene(idx : int):
-	for child in get_children(true):
-		if child.is_in_group("pauseable"):
-			if child.has_method("on_pause_requested"):
-				child.on_pause_requested()
+#	for child in get_children(true):
+#		if child.is_in_group("pauseable"):
+#			if child.has_method("on_pause_requested"):
+#				child.on_pause_requested()
+	get_tree().call_group("pauseable", "on_pause_requested")
+
 	
 	if playerReference != null:
-		var camera_ref = playerReference.get_node("PlayerCamera")
+		var camera_ref = playerReference.find_child("PlayerCamera")
 		if camera_ref != null:
 			(camera_ref as Camera2D).enabled = false
 	$cutscenePlayer/Main/Camera2D.enabled = true
 	$cutscenePlayer.init_cutscene(idx)
 
 func _cutscene_over():
-	for child in get_children(true):
-		if child.is_in_group("pauseable"):
-			if child.has_method("unpause"):
-				child.pause.requested()
+#	for child in get_children(true):
+#		if child.is_in_group("pauseable"):
+#			if child.has_method("unpause"):
+#				child.pause.requested()
+	get_tree().call_group("pauseable", "unpause")
 	
 	$cutscenePlayer/Main/Camera2D.enabled = false
 	
 	if playerReference != null:
-		var camera_ref = playerReference.get_node("PlayerCamera")
+		var camera_ref = playerReference.find_child("PlayerCamera")
 		if camera_ref != null:
 			(camera_ref as Camera2D).enabled = true
 			print("camera re enabled")

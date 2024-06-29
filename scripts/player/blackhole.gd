@@ -51,6 +51,7 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 
 func pause_requested():
+	print("player: pause received!")
 	physics_paused = true
 	paused_last_pos = position
 
