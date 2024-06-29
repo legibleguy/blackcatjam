@@ -10,11 +10,13 @@
 radius = 25.02
 
 [node name="Blackhole" type="CharacterBody2D" groups=["pauseable"]]
+collision_mask = 4
 script = ExtResource("1_n1usp")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_0rnqc")
 disabled = true
+one_way_collision = true
 
 [node name="PlayerCamera" type="Camera2D" parent="." groups=["pauseable"]]
 
@@ -40,12 +42,15 @@ orbitBehavior = 3
 [node name="black_hole_rotation" type="Node2D" parent="."]
 
 [node name="BlackHoleSprite" type="Sprite2D" parent="black_hole_rotation"]
+z_index = 1
 scale = Vector2(0.108, 0.108)
 texture = ExtResource("3_lpl44")
 
 [node name="BlackHoleSpriteInner" type="Sprite2D" parent="black_hole_rotation/BlackHoleSprite"]
+z_index = 2
 texture = ExtResource("4_f0cjg")
 
 [node name="Voidshape3" type="Sprite2D" parent="."]
+z_index = 3
 scale = Vector2(0.0982131, 0.0982131)
 texture = ExtResource("5_djvpj")

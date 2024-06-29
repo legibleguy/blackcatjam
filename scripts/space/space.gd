@@ -4,6 +4,7 @@ extends Node2D
 @export var targetSpaceObjectCount : int
 @export var numRadiusSubdivisions : int = 5
 @export var startSpawnAngle : float = 40
+@export var planetTexturesPool : Array[Texture] = []
 var currentSpaceObjectCount : int = 0
 
 @export_group("Player Player Spawn")
@@ -19,10 +20,12 @@ func _initialize_player():
 		var orbit_pos = mainArea.position
 		var orbit_radius = mainArea.get_orbit_radius()
 		if playerScene != null:
+			var spawnscale = 1.6
 			var spawndir : Vector2 = Vector2.UP * ((float(floor(numRadiusSubdivisions/2)) + 0.25)) / float(numRadiusSubdivisions) * orbit_radius
 			var playerObject : Node2D = playerScene.instantiate()
 			add_child(playerObject)
 			playerObject.position = orbit_pos + spawndir
+			playerObject.scale = Vector2(spawnscale, spawnscale)
 			playerReference = playerObject
 
 func _initialize_planets():
@@ -43,6 +46,7 @@ func _initialize_planets():
 				var currAngle = targetAngle * angleIdx
 				var spawnDirection = Vector2.UP.rotated(currAngle)
 				var spawn_pos = spawnDirection * currRadius + mainArea.position
+				var spawn_scale = randf_range(0.6, 1.6)
 
 				var newSpaceObject = spaceObjectScene.instantiate()
 				
@@ -57,7 +61,8 @@ func _initialize_planets():
 					printerr("space.gd: referencing an outdated method set_away_value_keep_in()")
 				
 				add_child(newSpaceObject)
-				(newSpaceObject as Node2D).position = spawn_pos
+				newSpaceObject.position = spawn_pos
+				newSpaceObject.scale = Vector2(spawn_scale, spawn_scale)
 	else:
 		if mainArea == null:
 			printerr("Couldn't find MainGravityArea")
@@ -113,7 +118,3 @@ func _draw():
 		draw_arc(mainArea.position, radius, -180, 180, 64, Color.BISQUE, 4)
 	else:
 		printerr("space.gd: referencing an outdated method get_orbit_radius in MainGravityArea.gd")
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
