@@ -1,0 +1,14 @@
+[gd_resource type="AnimatedTexture" load_steps=4 format=3 uid="uid://dcmsx37ylyqvc"]
+
+[ext_resource type="Texture2D" uid="uid://bumolb0457lj" path="res://scenes/menu/frame_0_delay-0.33s.png" id="1_7nepa"]
+[ext_resource type="Texture2D" uid="uid://bqgdxvgf12dl6" path="res://scenes/menu/frame_1_delay-0.34s.png" id="2_fcp3t"]
+[ext_resource type="Texture2D" uid="uid://bjoctlm6u6n7n" path="res://scenes/menu/frame_2_delay-0.33s.png" id="3_8bu78"]
+
+[resource]
+frames = 3
+speed_scale = 1.5
+frame_0/texture = ExtResource("1_7nepa")
+frame_1/texture = ExtResource("2_fcp3t")
+frame_1/duration = 1.0
+frame_2/texture = ExtResource("3_8bu78")
+frame_2/duration = 1.0
