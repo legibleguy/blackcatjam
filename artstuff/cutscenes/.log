@@ -1,0 +1,146 @@
+C:/Users/yeetlord/Documents/art/UTILITY/ffmpeg-7.0.1-essentials_build/ffmpeg-7.0.1-essentials_build/bin/ffmpeg.exe -hide_banner -y -v debug -r 3 -start_number 0 -i C:/Users/yeetlord/Documents/art/bcj/cutscenes/frame%04d.png -vf palettegen=stats_mode=full:reserve_transparent=1 -y C:/Users/yeetlord/Documents/art/bcj/cutscenes/KritaTempPalettegen_%06d.png 
+=====================================================
+Splitting the commandline.
+Reading option '-hide_banner' ... matched as option 'hide_banner' (do not show program banner) with argument '1'.
+Reading option '-y' ... matched as option 'y' (overwrite output files) with argument '1'.
+Reading option '-v' ... matched as option 'v' (set logging level) with argument 'debug'.
+Reading option '-r' ... matched as option 'r' (override input framerate/convert to given output framerate (Hz value, fraction or abbreviation)) with argument '3'.
+Reading option '-start_number' ... matched as AVOption 'start_number' with argument '0'.
+Reading option '-i' ... matched as input url with argument 'C:/Users/yeetlord/Documents/art/bcj/cutscenes/frame%04d.png'.
+Reading option '-vf' ... matched as option 'vf' (alias for -filter:v (apply filters to video streams)) with argument 'palettegen=stats_mode=full:reserve_transparent=1'.
+Reading option '-y' ... matched as option 'y' (overwrite output files) with argument '1'.
+Reading option 'C:/Users/yeetlord/Documents/art/bcj/cutscenes/KritaTempPalettegen_%06d.png' ... matched as output url.
+Finished splitting the commandline.
+Parsing a group of options: global .
+Applying option hide_banner (do not show program banner) with argument 1.
+Applying option y (overwrite output files) with argument 1.
+Applying option v (set logging level) with argument debug.
+Applying option y (overwrite output files) with argument 1.
+Successfully parsed a group of options.
+Parsing a group of options: input url C:/Users/yeetlord/Documents/art/bcj/cutscenes/frame%04d.png.
+Applying option r (override input framerate/convert to given output framerate (Hz value, fraction or abbreviation)) with argument 3.
+Successfully parsed a group of options.
+Opening an input file: C:/Users/yeetlord/Documents/art/bcj/cutscenes/frame%04d.png.
+[image2 @ 000001f141c6fbc0] Opening 'C:/Users/yeetlord/Documents/art/bcj/cutscenes/frame0000.png' for reading
+[file @ 000001f141c75b00] Setting default whitelist 'file,crypto,data'
+[AVIOContext @ 000001f141c7dcc0] Statistics: 1377940 bytes read, 0 seeks
+[image2 @ 000001f141c6fbc0] Opening 'C:/Users/yeetlord/Documents/art/bcj/cutscenes/frame0001.png' for reading
+[file @ 000001f141c7df80] Setting default whitelist 'file,crypto,data'
+[AVIOContext @ 000001f141c8e7c0] Statistics: 1385389 bytes read, 0 seeks
+[image2 @ 000001f141c6fbc0] Opening 'C:/Users/yeetlord/Documents/art/bcj/cutscenes/frame0002.png' for reading
+[file @ 000001f141c7df80] Setting default whitelist 'file,crypto,data'
+[AVIOContext @ 000001f141c7ad00] Statistics: 1355161 bytes read, 0 seeks
+Input #0, image2, from 'C:/Users/yeetlord/Documents/art/bcj/cutscenes/frame%04d.png':
+  Duration: 00:00:00.12, start: 0.000000, bitrate: N/A
+  Stream #0:0, 3, 1/25: Video: png, 1 reference frame, rgba(pc, gbr/unknown/unknown), 1600x900 [SAR 9448:9448 DAR 16:9], 0/1, 25 fps, 25 tbr, 25 tbn
+Successfully opened the file.
+Parsing a group of options: output url C:/Users/yeetlord/Documents/art/bcj/cutscenes/KritaTempPalettegen_%06d.png.
+Applying option vf (alias for -filter:v (apply filters to video streams)) with argument palettegen=stats_mode=full:reserve_transparent=1.
+Successfully parsed a group of options.
+Opening an output file: C:/Users/yeetlord/Documents/art/bcj/cutscenes/KritaTempPalettegen_%06d.png.
+[out#0/image2 @ 000001f141c6f6c0] No explicit maps, mapping streams automatically...
+[vost#0:0/png @ 000001f141c72d40] Created video stream from input stream 0:0
+[AVFilterGraph @ 000001f141c75340] Setting 'stats_mode' to value 'full'
+[AVFilterGraph @ 000001f141c75340] Setting 'reserve_transparent' to value '1'
+detected 8 logical cores
+Successfully opened the file.
+Stream mapping:
+  Stream #0:0 -> #0:0 (png (native) -> png (native))
+[vost#0:0/png @ 000001f141c72d40] Starting thread...
+[vf#0:0 @ 000001f141c74e40] Starting thread...
+[vist#0:0/png @ 000001f141c72800] [dec:png @ 000001f141c75740] Starting thread...
+[in#0/image2 @ 000001f141c6f7c0] Starting thread...
+Press [q] to stop, [?] for help
+[in#0/image2 @ 000001f141c6f7c0] EOF while reading input
+[in#0/image2 @ 000001f141c6f7c0] Terminating thread with return code 0 (success)
+[vist#0:0/png @ 000001f141c72800] [dec:png @ 000001f141c75740] Decoder thread received EOF packet
+[AVFilterGraph @ 000001f141ca3080] Setting 'stats_mode' to value 'full'
+[AVFilterGraph @ 000001f141ca3080] Setting 'reserve_transparent' to value '1'
+[graph 0 input from stream 0:0 @ 000001f141cd0f40] Setting 'video_size' to value '1600x900'
+[graph 0 input from stream 0:0 @ 000001f141cd0f40] Setting 'pix_fmt' to value '26'
+[graph 0 input from stream 0:0 @ 000001f141cd0f40] Setting 'time_base' to value '1/3'
+[graph 0 input from stream 0:0 @ 000001f141cd0f40] Setting 'pixel_aspect' to value '9448/9448'
+[graph 0 input from stream 0:0 @ 000001f141cd0f40] Setting 'colorspace' to value '0'
+[graph 0 input from stream 0:0 @ 000001f141cd0f40] Setting 'range' to value '2'
+[graph 0 input from stream 0:0 @ 000001f141cd0f40] Setting 'frame_rate' to value '3/1'
+[vist#0:0/png @ 000001f141c72800] [dec:png @ 000001f141c75740] Decoder returned EOF, finishing
+[vist#0:0/png @ 000001f141c72800] [dec:png @ 000001f141c75740] Terminating thread with return code 0 (success)
+[graph 0 input from stream 0:0 @ 000001f141cd0f40] w:1600 h:900 pixfmt:rgba tb:1/3 fr:3/1 sar:9448/9448 csp:gbr range:pc
+[format @ 000001f141ca0c80] Setting 'pix_fmts' to value 'rgb24|rgba|rgb48be|rgba64be|pal8|gray|ya8|gray16be|ya16be|monob'
+[auto_scale_0 @ 000001f1432840c0] w:iw h:ih flags:'' interl:0
+[Parsed_palettegen_0 @ 000001f1402f6440] auto-inserting filter 'auto_scale_0' between the filter 'graph 0 input from stream 0:0' and the filter 'Parsed_palettegen_0'
+[auto_scale_1 @ 000001f143284d80] w:iw h:ih flags:'' interl:0
+[format @ 000001f141ca0c80] auto-inserting filter 'auto_scale_1' between the filter 'Parsed_palettegen_0' and the filter 'format'
+[AVFilterGraph @ 000001f141ca3080] query_formats: 4 queried, 3 merged, 6 already done, 0 delayed
+[auto_scale_1 @ 000001f143284d80] picking rgba out of 10 ref:bgra alpha:1
+[swscaler @ 000001f141cf2880] [swscaler @ 000001f141d05880] Forcing full internal H chroma due to input having non subsampled chroma
+[swscaler @ 000001f141cf2880] [swscaler @ 000001f141d1a280] Forcing full internal H chroma due to input having non subsampled chroma
+[swscaler @ 000001f141cf2880] [swscaler @ 000001f141d2ecc0] Forcing full internal H chroma due to input having non subsampled chroma
+[swscaler @ 000001f141cf2880] [swscaler @ 000001f14328aec0] Forcing full internal H chroma due to input having non subsampled chroma
+[swscaler @ 000001f141cf2880] [swscaler @ 000001f14329f900] Forcing full internal H chroma due to input having non subsampled chroma
+[swscaler @ 000001f141cf2880] [swscaler @ 000001f1432b4300] Forcing full internal H chroma due to input having non subsampled chroma
+[swscaler @ 000001f141cf2880] [swscaler @ 000001f1432c8d40] Forcing full internal H chroma due to input having non subsampled chroma
+[swscaler @ 000001f141cf2880] [swscaler @ 000001f1432dd740] Forcing full internal H chroma due to input having non subsampled chroma
+[swscaler @ 000001f141cf2880] [swscaler @ 000001f1432f2180] Forcing full internal H chroma due to input having non subsampled chroma
+[auto_scale_0 @ 000001f1432840c0] w:1600 h:900 fmt:rgba csp:gbr range:pc sar:9448/9448 -> w:1600 h:900 fmt:bgra csp:gbr range:pc sar:1/1 flags:0x00000004
+[swscaler @ 000001f143306b80] [swscaler @ 000001f143313b80] Forcing full internal H chroma due to input having non subsampled chroma
+[swscaler @ 000001f143306b80] [swscaler @ 000001f143326bc0] Forcing full internal H chroma due to input having non subsampled chroma
+[swscaler @ 000001f143306b80] [swscaler @ 000001f143339bc0] Forcing full internal H chroma due to input having non subsampled chroma
+[swscaler @ 000001f143306b80] [swscaler @ 000001f14334cc00] Forcing full internal H chroma due to input having non subsampled chroma
+[swscaler @ 000001f143306b80] [swscaler @ 000001f14335fc40] Forcing full internal H chroma due to input having non subsampled chroma
+[swscaler @ 000001f143306b80] [swscaler @ 000001f143372c80] Forcing full internal H chroma due to input having non subsampled chroma
+[swscaler @ 000001f143306b80] [swscaler @ 000001f143385dc0] Forcing full internal H chroma due to input having non subsampled chroma
+[swscaler @ 000001f143306b80] [swscaler @ 000001f143398f40] Forcing full internal H chroma due to input having non subsampled chroma
+[swscaler @ 000001f143306b80] [swscaler @ 000001f1433abf40] Forcing full internal H chroma due to input having non subsampled chroma
+[auto_scale_1 @ 000001f143284d80] w:16 h:16 fmt:bgra csp:gbr range:pc sar:1/1 -> w:16 h:16 fmt:rgba csp:gbr range:pc sar:1/1 flags:0x00000004
+[graph 0 input from stream 0:0 @ 000001f141cd0f40] video frame properties congruent with link at pts_time: 0
+[Parsed_palettegen_0 @ 000001f1402f6440] 255(+1) colors generated out of 116503 colors; ratio=0.002189
+[Parsed_palettegen_0 @ 000001f1402f6440] Duped color: FF544456
+[Parsed_palettegen_0 @ 000001f1402f6440] Duped color: FF59495A
+[Parsed_palettegen_0 @ 000001f1402f6440] Duped color: FF6A5B64
+[Parsed_palettegen_0 @ 000001f1402f6440] Duped color: FF77676B
+Output #0, image2, to 'C:/Users/yeetlord/Documents/art/bcj/cutscenes/KritaTempPalettegen_%06d.png':
+  Metadata:
+    encoder         : Lavf61.1.100
+  Stream #0:0, 0, 1/3: Video: png, 1 reference frame, rgba(pc, gbr/unknown/unknown, progressive), 16x16 [SAR 1:1 DAR 1:1], 0/1, q=2-31, 200 kb/s, 3 fps, 3 tbn
+      Metadata:
+        encoder         : Lavc61.3.100 png
+[out#0/image2 @ 000001f141c6f6c0] Starting thread...
+[out_0_0 @ 000001f141ca0b80] EOF on sink link out_0_0:default.
+[vf#0:0 @ 000001f141c74e40] Filtergraph returned EOF, finishing
+[vf#0:0 @ 000001f141c74e40] All consumers returned EOF
+[vost#0:0/png @ 000001f141c72d40] Encoder thread received EOF
+[vost#0:0/png @ 000001f141c72d40] Terminating thread with return code 0 (success)
+[image2 @ 000001f141c7e100] Opening 'C:/Users/yeetlord/Documents/art/bcj/cutscenes/KritaTempPalettegen_000001.png' for writing
+[file @ 000001f1433fe500] Setting default whitelist 'file,crypto,data'
+[AVIOContext @ 000001f1439c4300] Statistics: 980 bytes written, 0 seeks, 1 writeouts
+[out#0/image2 @ 000001f141c6f6c0] All streams finished
+[out#0/image2 @ 000001f141c6f6c0] Terminating thread with return code 0 (success)
+[vf#0:0 @ 000001f141c74e40] Terminating thread with return code 0 (success)
+[out#0/image2 @ 000001f141c6f6c0] Output file #0 (C:/Users/yeetlord/Documents/art/bcj/cutscenes/KritaTempPalettegen_%06d.png):
+[out#0/image2 @ 000001f141c6f6c0]   Output stream #0:0 (video): 1 frames encoded; 1 packets muxed (980 bytes); 
+[out#0/image2 @ 000001f141c6f6c0]   Total: 1 packets (980 bytes) muxed
+[out#0/image2 @ 000001f141c6f6c0] video:1KiB audio:0KiB subtitle:0KiB other streams:0KiB global headers:0KiB muxing overhead: unknown
+frame=    1 fps=0.0 q=-0.0 Lsize=N/A time=00:00:00.33 bitrate=N/A speed=1.08x    
+[in#0/image2 @ 000001f141c6f7c0] Input file #0 (C:/Users/yeetlord/Documents/art/bcj/cutscenes/frame%04d.png):
+[in#0/image2 @ 000001f141c6f7c0]   Input stream #0:0 (video): 3 packets read (4118490 bytes); 3 frames decoded; 0 decode errors; 
+[in#0/image2 @ 000001f141c6f7c0]   Total: 3 packets (4118490 bytes) demuxed
+Input #0, image2, from 'C:/Users/yeetlord/Documents/art/bcj/cutscenes/frame%04d.png':
+  Duration: 00:00:00.12, start: 0.000000, bitrate: N/A
+  Stream #0:0: Video: png, rgba(pc, gbr/unknown/unknown), 1600x900 [SAR 9448:9448 DAR 16:9], 25 fps, 25 tbr, 25 tbn
+Input #1, image2, from 'C:/Users/yeetlord/Documents/art/bcj/cutscenes/KritaTempPalettegen_%06d.png':
+  Duration: 00:00:00.04, start: 0.000000, bitrate: N/A
+  Stream #1:0: Video: png, rgba(pc, gbr/unknown/unknown), 16x16 [SAR 1:1 DAR 1:1], 25 fps, 25 tbr, 25 tbn
+Stream mapping:
+  Stream #0:0 (png) -> paletteuse
+  Stream #1:0 (png) -> paletteuse
+  paletteuse:default -> Stream #0:0 (gif)
+Press [q] to stop, [?] for help
+Output #0, gif, to 'C:/Users/yeetlord/Documents/art/bcj/cutscenes/voidcat_anim11.gif':
+  Metadata:
+    encoder         : Lavf61.1.100
+  Stream #0:0: Video: gif, pal8(pc, gbr/unknown/unknown, progressive), 1600x900 [SAR 1:1 DAR 16:9], q=2-31, 200 kb/s, 3 fps, 100 tbn
+      Metadata:
+        encoder         : Lavc61.3.100 gif
+frame=    1 fps=0.0 q=-0.0 size=       0KiB time=00:00:00.33 bitrate=   0.0kbits/s speed=0.653x    [out#0/gif @ 000001b9d687e280] video:1300KiB audio:0KiB subtitle:0KiB other streams:0KiB global headers:0KiB muxing overhead: 0.001503%
+frame=    3 fps=0.0 q=-0.0 Lsize=    1300KiB time=00:00:01.00 bitrate=10648.8kbits/s speed=1.25x    
