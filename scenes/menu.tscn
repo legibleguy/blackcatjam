@@ -1,0 +1,14 @@
+[gd_scene load_steps=2 format=3 uid="uid://bds0xyqm5gbkm"]
+
+[ext_resource type="Script" path="res://scripts/menu.gd" id="1_ovsat"]
+
+[node name="menu" type="Node2D"]
+script = ExtResource("1_ovsat")
+
+[node name="Start" type="Button" parent="."]
+offset_left = 476.0
+offset_top = 262.0
+offset_right = 668.0
+offset_bottom = 312.0
+text = "Start"
+icon_alignment = 1

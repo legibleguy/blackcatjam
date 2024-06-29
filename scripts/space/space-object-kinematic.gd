@@ -12,6 +12,7 @@ var awayFromCenter_avoid : float = 0.9
 
 var avoidanceProgress : float = 0.0
 var attachedWithRotation : bool = false
+var avoidanceStartRotation : float = 0.0
 var avoidanceTargetRotation : float = 0.0
 const AVOIDANCEROTATIONDELTA = 180
 
@@ -53,6 +54,8 @@ func _reinitialize_away_factor():
 		else:
 			reparent(_get_curr_orbit(), true)
 			printerr("planet eneterd in avoidance mode but couldn't find the rotation parent")
+		
+		avoidanceStartRotation = get_parent().rotation
 		
 		awayFromCenter = awayFromCenter_avoid
 	
@@ -133,7 +136,9 @@ func _physics_process(delta):
 			targetVelocity.y = targetVelocity.y + (0 - targetVelocity.y) * (delta * 7)
 			move_and_collide(targetVelocity)
 			
-			avoidanceProgress = avoidanceProgress + (1 - avoidanceProgress) * (delta * 6)
+			var progress = abs(get_parent().rotation - avoidanceStartRotation) / 180
+			print(rad_to_deg(get_parent().rotation))
+			
 			if avoidanceProgress > 0.99:
 				if attachedWithRotation: reparent(get_parent().get_parent().get_parent())	
 				else: reparent(get_parent().get_parent())

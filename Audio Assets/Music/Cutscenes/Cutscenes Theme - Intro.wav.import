@@ -2,11 +2,7 @@
 
 importer="wav"
 type="AudioStreamWAV"
-<<<<<<< HEAD
 uid="uid://pettv7854cbw"
-=======
-uid="uid://dl1f2mg1ck15s"
->>>>>>> c3be470a5817d5109945e75072625cb28b337f7a
 path="res://.godot/imported/Cutscenes Theme - Intro.wav-4b4d899f6639b35a3026f52bd7a9c27e.sample"
 
 [deps]

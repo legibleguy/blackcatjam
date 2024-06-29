@@ -11,7 +11,10 @@ func _ready():
 
 func _physics_process(delta: float) -> void:
 	if $black_hole_rotation != null:
-		$black_hole_rotation.rotation += 0.1
+		$black_hole_rotation.rotate(deg_to_rad(1))
+		if abs(rad_to_deg($black_hole_rotation.rotation)) > 360.0:
+			var newRot = -sign(rad_to_deg($black_hole_rotation.rotation)) * (360 - (abs(rad_to_deg($black_hole_rotation.rotation)) - 360 ))
+			$black_hole_rotation.rotation = deg_to_rad(newRot)
 	else:
 		printerr("blackhole.gd: couldn't access $black_hole_rotation node")
 

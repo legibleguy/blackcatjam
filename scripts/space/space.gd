@@ -9,12 +9,17 @@ var currentSpaceObjectCount : int = 0
 @export_group("Player Player Spawn")
 @export var playerScene : PackedScene
 
-func _initialize_player(orbit_pos, orbit_radius):
-	if playerScene != null:
-		var spawndir : Vector2 = Vector2.UP * ((float(floor(numRadiusSubdivisions/2)) + 0.25)) / float(numRadiusSubdivisions) * orbit_radius
-		var playerObject : Node2D = playerScene.instantiate()
-		add_child(playerObject)
-		playerObject.position = orbit_pos + spawndir
+func _initialize_player():
+	var mainArea = find_child("MainGravityArea")
+	
+	if (not mainArea == null) and mainArea.has_method("get_orbit_radius"):
+		var orbit_pos = mainArea.position
+		var orbit_radius = mainArea.get_orbit_radius()
+		if playerScene != null:
+			var spawndir : Vector2 = Vector2.UP * ((float(floor(numRadiusSubdivisions/2)) + 0.25)) / float(numRadiusSubdivisions) * orbit_radius
+			var playerObject : Node2D = playerScene.instantiate()
+			add_child(playerObject)
+			playerObject.position = orbit_pos + spawndir
 
 func _initialize_planets():
 	var mainArea = find_child("MainGravityArea")
@@ -49,7 +54,6 @@ func _initialize_planets():
 				
 				add_child(newSpaceObject)
 				(newSpaceObject as Node2D).position = spawn_pos
-		_initialize_player(mainArea.position, mainAreaRadius)
 	else:
 		if mainArea == null:
 			printerr("Couldn't find MainGravityArea")
@@ -59,6 +63,8 @@ func _initialize_planets():
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	_initialize_planets()
+	
+	_initialize_player()
 	
 func _draw():
 	var mainArea = find_child("MainGravityArea")
