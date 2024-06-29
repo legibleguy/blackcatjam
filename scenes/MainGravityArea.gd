@@ -5,8 +5,8 @@ var bodies_in = []
 enum ORBIT_BEHAVIOR {PULL, PUSH, KEEP_IN, AVOID}
 @export var orbitBehavior = ORBIT_BEHAVIOR.KEEP_IN
 
-func set_orbit_behacior(newBehavior : ORBIT_BEHAVIOR):
-	orbitBehavior
+func set_orbit_behavior(newBehavior : ORBIT_BEHAVIOR):
+	orbitBehavior = newBehavior
 	for body in get_overlapping_bodies():
 		if body.has_method("on_orbit_behavior_changed"):
 			body.on_orbit_behavior_changed(self)
@@ -32,5 +32,3 @@ func on_body_exited(body):
 func _ready():
 	body_entered.connect(on_body_enetered)
 	body_exited.connect(on_body_exited)
-	
-	print(get_orbit_radius())

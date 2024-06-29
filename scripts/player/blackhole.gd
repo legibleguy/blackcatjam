@@ -44,10 +44,10 @@ func _physics_process(delta: float) -> void:
 	elif Input.is_action_pressed("move_d") and not Input.is_action_pressed("move_u"):
 		velocity.y = SPEED
 	
-#	if Input.is_action_just_pressed("interact"):
-#		$MainGravityArea.set_orbit_behavior(ORBIT_BEHAVIOR.PULL)
-#	elif Input.is_action_just_released("interact"):
-#		$MainGravityArea.set_orbit_behavior(ORBIT_BEHAVIOR.AVOID)
+	if Input.is_action_just_pressed("interact"):
+		$MainGravityArea.set_orbit_behavior(ORBIT_BEHAVIOR.PULL)
+	elif Input.is_action_just_released("interact"):
+		$MainGravityArea.set_orbit_behavior(ORBIT_BEHAVIOR.AVOID)
 	move_and_slide()
 
 func pause_requested():

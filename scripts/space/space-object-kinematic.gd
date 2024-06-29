@@ -16,8 +16,10 @@ var awayFromCenter_pullin : float = 0.9
 var awayFromCenter_avoid : float = 0.9
 
 var avoidanceProgress : float = 0.0
-var attachedWithRotation : bool = false
 var avoidanceStartVel : Vector2 = Vector2.ZERO
+
+var pullinProgress : float = 0.0
+var pullinStartPos : Vector2 = Vector2.ZERO
 
 var speed : float = 65
 var global_speed_scale : float = 0.15
@@ -59,6 +61,17 @@ func _reinitialize_away_factor():
 		awayFromCenter = awayFromCenter_keepin
 	elif curr_orbit_behavior == ORBIT_BEHAVIOR.PULL:
 		awayFromCenter = awayFromCenter_pullin
+		pullinProgress = 0.0
+		
+		var rotationParent = _get_curr_orbit().get_parent().get_node("black_hole_rotation")
+		if rotationParent != null:
+			reparent(rotationParent)
+		else:
+			reparent(_get_curr_orbit(), true)
+			printerr("planet eneterd in pull in mode but couldn't find the rotation parent")
+		
+		pullinStartPos = position
+		
 	elif curr_orbit_behavior == ORBIT_BEHAVIOR.AVOID:
 		avoidanceProgress = 0.0
 		avoidanceStartVel = targetVelocity
@@ -71,7 +84,6 @@ func _reinitialize_away_factor():
 			printerr("planet eneterd in avoidance mode but couldn't find the rotation parent")
 		
 		awayFromCenter = awayFromCenter_avoid
-	
 
 func _on_entered_orbit(body):
 	
@@ -79,19 +91,6 @@ func _on_entered_orbit(body):
 		orbits.push_back(body)
 		
 		_reinitialize_away_factor()
-
-func _draw():
-	return
-	if orbits.size() > 0:
-		draw_circle(_get_curr_orbit().position - position, 24, Color.RED)
-		
-		var pastTargetPoint : bool = (_get_curr_orbit().position + (_get_curr_orbit().position.direction_to(position) * _get_curr_orbit().get_orbit_radius() * awayFromCenter)).distance_to(_get_curr_orbit().position) < position.distance_to(_get_curr_orbit().position)
-		var col = Color.DEEP_PINK if pastTargetPoint else Color.GREEN
-		
-		draw_circle(_get_curr_orbit().position + (_get_curr_orbit().position.direction_to(position) * _get_curr_orbit().get_orbit_radius() * awayFromCenter) - position, 16, col)
-		
-		var sidePushOffset = _get_curr_orbit().position.direction_to(position).orthogonal()
-		draw_circle(_get_curr_orbit().position + (_get_curr_orbit().position.direction_to(position) * _get_curr_orbit().get_orbit_radius() * awayFromCenter) + sidePushOffset - position, 16, Color.YELLOW)
 
 func keep_body_in(orbit_pos, orbit_radius, delta):
 	var targetPoint = orbit_pos + (orbit_pos.direction_to(position) * orbit_radius * awayFromCenter)
@@ -151,8 +150,12 @@ func _physics_process(delta):
 		if curr_orbit_behavior == ORBIT_BEHAVIOR.KEEP_IN:
 			keep_body_in(curr_orbit.position, curr_orbit_radius, delta)
 		elif curr_orbit_behavior == ORBIT_BEHAVIOR.PULL:
-			awayFromCenter = awayFromCenter + (0 - awayFromCenter) * (delta * 0.8)
-			keep_body_in(curr_orbit.position, curr_orbit_radius, delta)
+			pullinProgress = pullinProgress + (1 - pullinProgress) * (delta * 0.64)
+			position.x = lerp(pullinStartPos.x, 0.0, pullinProgress)
+			position.y = lerp(pullinStartPos.y, 0.0, pullinProgress)
+			if pullinProgress > 0.95:
+				queue_free()
+
 		elif curr_orbit_behavior == ORBIT_BEHAVIOR.AVOID:
 			targetVelocity.x = targetVelocity.x + (0 - targetVelocity.x) * (delta * 7)
 			targetVelocity.y = targetVelocity.y + (0 - targetVelocity.y) * (delta * 7)
