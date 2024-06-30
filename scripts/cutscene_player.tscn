@@ -42,18 +42,21 @@ grow_vertical = 2
 scale = Vector2(0.6, 0.6)
 
 [node name="Label" type="Label" parent="Main/CanvasLayer"]
+clip_contents = true
 anchors_preset = 7
 anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -225.0
-offset_top = -134.0
-offset_right = 225.0
-offset_bottom = -81.0
+offset_left = -399.0
+offset_top = -149.0
+offset_right = 401.0
+offset_bottom = -43.0
 grow_horizontal = 2
 grow_vertical = 0
 theme = SubResource("Theme_pyfwo")
 theme_override_colors/font_color = Color(0.0313726, 0.0313726, 0.0313726, 1)
-text = "test test bla bla bla"
+text = "test test bla "
 horizontal_alignment = 1
+autowrap_mode = 3
+justification_flags = 169

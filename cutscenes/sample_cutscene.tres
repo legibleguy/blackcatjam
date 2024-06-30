@@ -28,4 +28,4 @@ sheetPath = ""
 
 [resource]
 script = ExtResource("1_ywemr")
-cutsceneFrames = [SubResource("Resource_8r766"), SubResource("Resource_f0v4d")]
+cutsceneFrames = Array[ExtResource("2_6foil")]([SubResource("Resource_8r766"), SubResource("Resource_f0v4d")])
