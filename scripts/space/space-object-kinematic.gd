@@ -162,7 +162,7 @@ func _physics_process(delta):
 			avoidanceProgress = avoidanceProgress + (1 - avoidanceProgress) * (delta * 1.0)
 			move_and_collide(targetVelocity)
 			
-			if avoidanceProgress > 0.92:
+			if avoidanceProgress > 0.9:
 				targetVelocity = avoidanceStartVel.orthogonal() * 1.34
 				_set_curr_movement_state(MOVEMENT_STATE.IGNORE_ORBITS_KEEP_VELOCITY)
 	else:
