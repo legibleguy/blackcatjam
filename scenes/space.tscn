@@ -1,4 +1,4 @@
-[gd_scene load_steps=84 format=3 uid="uid://buv258elxdw06"]
+[gd_scene load_steps=81 format=3 uid="uid://buv258elxdw06"]
 
 [ext_resource type="Script" path="res://scripts/space/space.gd" id="1_sokdp"]
 [ext_resource type="PackedScene" uid="uid://c58k7mpm0u853" path="res://scripts/space/space-object-kinematic.tscn" id="2_uaq1s"]
@@ -11,35 +11,34 @@
 [ext_resource type="Shader" path="res://shaders/space.gdshader" id="9_lhsvs"]
 [ext_resource type="Texture2D" uid="uid://cj0ovkxlw315" path="res://artstuff/cutscenes/voidcat_csbg.png" id="9_oxs3q"]
 [ext_resource type="Texture2D" uid="uid://d35woh13fe8nt" path="res://artstuff/cutscenes/voidcat_cs4_1.png" id="9_pg3fr"]
-[ext_resource type="Texture2D" uid="uid://dhuoow3u68mhh" path="res://artstuff/cutscenes/update/voidcat_cs1_1spin.png" id="10_5nesv"]
+[ext_resource type="Texture2D" uid="uid://c1inah1iig4wt" path="res://artstuff/cutscenes/update2/voidcat_cs1_1.png" id="10_nkpsa"]
 [ext_resource type="Texture2D" uid="uid://yjntts5fl3we" path="res://artstuff/cutscenes/voidcat_cs4_2.png" id="10_ogsb6"]
 [ext_resource type="Texture2D" uid="uid://0c6hysej4lgd" path="res://artstuff/cutscenes/voidcat_cs4_3.png" id="11_2lnon"]
+[ext_resource type="Texture2D" uid="uid://dveslbx5ekkdb" path="res://artstuff/cutscenes/update2/voidcat_cs2_1.png" id="11_r61xm"]
+[ext_resource type="Texture2D" uid="uid://dmt1fgofp7sd6" path="res://artstuff/cutscenes/update2/voidcat_cs3_8.png" id="12_6oxeb"]
 [ext_resource type="Script" path="res://cutscenes/CutsceneFrame.gd" id="12_043yk"]
-[ext_resource type="Texture2D" uid="uid://wyvsn0oxrtry" path="res://artstuff/cutscenes/update/voidcat_cs2_1.png" id="12_n5i4r"]
-[ext_resource type="Texture2D" uid="uid://b8j81py47n5yp" path="res://artstuff/cutscenes/update/voidcat_cs2_2.png" id="13_15fff"]
+[ext_resource type="Texture2D" uid="uid://crcbeapn7bkwd" path="res://artstuff/cutscenes/update2/voidcat_cs3_9.png" id="13_mwfgt"]
 [ext_resource type="Texture2D" uid="uid://cu0awkbo4iawp" path="res://artstuff/cutscenes/voidcat_cs5_1.png" id="13_pd4s8"]
 [ext_resource type="Texture2D" uid="uid://btdj1cwru2i7c" path="res://artstuff/cutscenes/voidcat_cs5_2.png" id="14_cd6tq"]
-[ext_resource type="Texture2D" uid="uid://l823qyhi0spe" path="res://artstuff/cutscenes/update/voidcat_cs2_3.png" id="14_kprgo"]
-[ext_resource type="Texture2D" uid="uid://bltx7lml26ag7" path="res://artstuff/cutscenes/update/voidcat_cs3_1.png" id="15_ee5xv"]
+[ext_resource type="Texture2D" uid="uid://dv670noeanldv" path="res://artstuff/cutscenes/update2/voidcat_cs3_10.png" id="14_tsx04"]
 [ext_resource type="Texture2D" uid="uid://cbc6peji6obdk" path="res://artstuff/cutscenes/voidcat_cs5_3.png" id="15_mkmai"]
+[ext_resource type="Texture2D" uid="uid://b1sojwh3rc1fm" path="res://artstuff/cutscenes/update2/voidcat_cs2_2.png" id="15_vkwct"]
+[ext_resource type="Texture2D" uid="uid://c67avc6kflo8x" path="res://artstuff/cutscenes/update2/voidcat_cs2_3.png" id="16_g5hyf"]
 [ext_resource type="Script" path="res://cutscenes/Cutscene.gd" id="16_mc2qd"]
-[ext_resource type="Texture2D" uid="uid://efayc7b7if6m" path="res://artstuff/cutscenes/update/voidcat_cs3_2.png" id="16_wxk11"]
-[ext_resource type="Texture2D" uid="uid://do5hlsournqjm" path="res://artstuff/cutscenes/update/voidcat_cs3_3.png" id="17_sj1js"]
+[ext_resource type="Texture2D" uid="uid://b262f5yhdkhmx" path="res://artstuff/cutscenes/update2/voidcat_cs3_1.png" id="17_7fp6a"]
 [ext_resource type="Texture2D" uid="uid://dtqqgwvtatfx5" path="res://artstuff/cutscenes/voidcat_cs6_1.png" id="17_uq0ls"]
-[ext_resource type="Texture2D" uid="uid://4ws8yv5whdwi" path="res://artstuff/cutscenes/update/voidcat_cs3_4.png" id="18_v3d8e"]
+[ext_resource type="Texture2D" uid="uid://dcaafv882xw6t" path="res://artstuff/cutscenes/update2/voidcat_cs3_2.png" id="18_4isng"]
 [ext_resource type="Texture2D" uid="uid://by2lqhlrw7ufk" path="res://artstuff/cutscenes/voidcat_cs6_2.png" id="18_wo5ga"]
-[ext_resource type="Texture2D" uid="uid://cxvlmb1ntjj66" path="res://artstuff/cutscenes/update/voidcat_cs3_5.png" id="19_jw4db"]
+[ext_resource type="Texture2D" uid="uid://8dcxi7ur8qok" path="res://artstuff/cutscenes/update2/voidcat_cs3_3.png" id="19_2w44p"]
 [ext_resource type="Texture2D" uid="uid://b5yg0ip3l50jn" path="res://artstuff/cutscenes/voidcat_cs6_3.png" id="19_xgrrv"]
 [ext_resource type="Texture2D" uid="uid://cyifyboyyqomk" path="res://artstuff/cutscenes/voidcat_cs7_1.png" id="20_nwgvs"]
-[ext_resource type="Texture2D" uid="uid://hur7wxlibkkx" path="res://artstuff/cutscenes/update/voidcat_cs3_6.png" id="20_yx801"]
-[ext_resource type="Texture2D" uid="uid://c57wwnsr32ckp" path="res://artstuff/cutscenes/update/voidcat_cs3_7.png" id="21_c64o2"]
+[ext_resource type="Texture2D" uid="uid://dn5l8ap84xjxo" path="res://artstuff/cutscenes/update2/voidcat_cs3_4.png" id="20_wcpob"]
 [ext_resource type="Texture2D" uid="uid://dkly4cdc2lqro" path="res://artstuff/cutscenes/voidcat_cs7_2.png" id="21_pmmb6"]
+[ext_resource type="Texture2D" uid="uid://d1woy04j15eyu" path="res://artstuff/cutscenes/update2/voidcat_cs3_6.png" id="21_ttvdc"]
+[ext_resource type="Texture2D" uid="uid://sk4t6eji4gyt" path="res://artstuff/cutscenes/update2/voidcat_cs3_7.png" id="22_3rdbx"]
 [ext_resource type="Texture2D" uid="uid://c2mebk2rrxs6c" path="res://artstuff/cutscenes/voidcat_cs7_3.png" id="22_gsr57"]
-[ext_resource type="Texture2D" uid="uid://bwx503dv2boe7" path="res://artstuff/cutscenes/update/voidcat_cs3_8.png" id="22_j4l0b"]
 [ext_resource type="Texture2D" uid="uid://ora0fy0vc4db" path="res://artstuff/cutscenes/voidcat_cs8_1.png" id="23_6w4wb"]
-[ext_resource type="Texture2D" uid="uid://rr4vgcvmickl" path="res://artstuff/cutscenes/update/voidcat_cs3_9.png" id="23_sccr0"]
 [ext_resource type="Texture2D" uid="uid://yc6616qqk4lc" path="res://artstuff/cutscenes/voidcat_cs8_2.png" id="24_jq7us"]
-[ext_resource type="Texture2D" uid="uid://bedenqgue8qv7" path="res://artstuff/cutscenes/update/voidcat_cs3_10.png" id="24_wji0h"]
 [ext_resource type="Texture2D" uid="uid://4bb4nub6gpjk" path="res://artstuff/cutscenes/voidcat_cs8_3.png" id="25_6c2cb"]
 [ext_resource type="Texture2D" uid="uid://cq8d4plkk56c6" path="res://artstuff/cutscenes/voidcat_cs9_1.png" id="26_7ts5f"]
 [ext_resource type="Texture2D" uid="uid://but6ruickblcj" path="res://artstuff/cutscenes/voidcat_cs9_2.png" id="27_otkgs"]
@@ -53,7 +52,33 @@
 [ext_resource type="AudioStream" uid="uid://cr2gs775xj7pb" path="res://Audio Assets/Music/Main theme/Black Cat while in Space.mp3" id="51_awuji"]
 
 [sub_resource type="AnimatedTexture" id="AnimatedTexture_55ku6"]
-frame_0/texture = ExtResource("10_5nesv")
+frames = 13
+speed_scale = 1.5
+frame_0/texture = ExtResource("10_nkpsa")
+frame_1/texture = ExtResource("11_r61xm")
+frame_1/duration = 1.0
+frame_2/texture = ExtResource("15_vkwct")
+frame_2/duration = 1.0
+frame_3/texture = ExtResource("16_g5hyf")
+frame_3/duration = 1.0
+frame_4/texture = ExtResource("17_7fp6a")
+frame_4/duration = 1.0
+frame_5/texture = ExtResource("18_4isng")
+frame_5/duration = 1.0
+frame_6/texture = ExtResource("19_2w44p")
+frame_6/duration = 1.0
+frame_7/texture = ExtResource("20_wcpob")
+frame_7/duration = 1.0
+frame_8/texture = ExtResource("21_ttvdc")
+frame_8/duration = 1.0
+frame_9/texture = ExtResource("22_3rdbx")
+frame_9/duration = 1.0
+frame_10/texture = ExtResource("12_6oxeb")
+frame_10/duration = 1.0
+frame_11/texture = ExtResource("13_mwfgt")
+frame_11/duration = 1.0
+frame_12/texture = ExtResource("14_tsx04")
+frame_12/duration = 1.0
 
 [sub_resource type="Resource" id="Resource_8r766"]
 script = ExtResource("12_043yk")
@@ -62,48 +87,16 @@ cutsceneCaption = "I am a void."
 sheetFromPath = false
 sheetPath = ""
 
-[sub_resource type="AnimatedTexture" id="AnimatedTexture_g1b7x"]
-frames = 3
-speed_scale = 1.5
-frame_0/texture = ExtResource("12_n5i4r")
-frame_1/texture = ExtResource("13_15fff")
-frame_1/duration = 1.0
-frame_2/texture = ExtResource("14_kprgo")
-frame_2/duration = 1.0
-
 [sub_resource type="Resource" id="Resource_ytla3"]
 script = ExtResource("12_043yk")
-cutsceneSheet = SubResource("AnimatedTexture_g1b7x")
+cutsceneSheet = SubResource("AnimatedTexture_55ku6")
 cutsceneCaption = "I am a cat."
 sheetFromPath = false
 sheetPath = ""
 
-[sub_resource type="AnimatedTexture" id="AnimatedTexture_lu1mv"]
-frames = 10
-speed_scale = 1.5
-frame_0/texture = ExtResource("15_ee5xv")
-frame_1/texture = ExtResource("16_wxk11")
-frame_1/duration = 1.0
-frame_2/texture = ExtResource("17_sj1js")
-frame_2/duration = 1.0
-frame_3/texture = ExtResource("18_v3d8e")
-frame_3/duration = 1.0
-frame_4/texture = ExtResource("19_jw4db")
-frame_4/duration = 1.0
-frame_5/texture = ExtResource("20_yx801")
-frame_5/duration = 1.0
-frame_6/texture = ExtResource("21_c64o2")
-frame_6/duration = 1.0
-frame_7/texture = ExtResource("22_j4l0b")
-frame_7/duration = 1.0
-frame_8/texture = ExtResource("23_sccr0")
-frame_8/duration = 1.0
-frame_9/texture = ExtResource("24_wji0h")
-frame_9/duration = 1.0
-
 [sub_resource type="Resource" id="Resource_uolnn"]
 script = ExtResource("12_043yk")
-cutsceneSheet = SubResource("AnimatedTexture_lu1mv")
+cutsceneSheet = SubResource("AnimatedTexture_55ku6")
 cutsceneCaption = "I’m free to stray around the vast universe, eating what I please."
 sheetFromPath = false
 sheetPath = ""
