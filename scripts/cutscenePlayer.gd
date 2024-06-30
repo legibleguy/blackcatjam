@@ -15,18 +15,29 @@ func init_cutscene(idx : int):
 	currFrame = -1
 	$Main.visible = true
 	$Main/CanvasLayer.visible = true
+	$AudioStreamPlayerIntro.play()
 	if !proceed():
 		end_curr_cutscene()
 
 func end_curr_cutscene():
+	$AudioStreamPlayerLoop.stop()
+	$AudioStreamPlayerIntro.stop()
+	
 	active = false
 	$Main.visible = false
 	$Main/CanvasLayer.visible = false
 	cutscene_over.emit()
 
+func _audio_intro_finished():
+	$AudioStreamPlayerLoop.play()
+
+func _audio_loop_finished():
+	$AudioStreamPlayerLoop.play()
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
+	$AudioStreamPlayerIntro.finished.connect(_audio_intro_finished)
+	$AudioStreamPlayerLoop.finished.connect(_audio_loop_finished)
 
 func proceed() -> bool:
 	var result : bool = false
@@ -39,7 +50,9 @@ func proceed() -> bool:
 				if frame != null:
 					find_child("Sprite2D").texture = frame.cutsceneSheet
 					find_child("Label").text = frame.cutsceneCaption
+					$AudioStreamPlayerPageFlip.play()
 					result = true
+				
 				var bg = null
 				if frame.customBackground != null:
 					bg = frame.customBackground

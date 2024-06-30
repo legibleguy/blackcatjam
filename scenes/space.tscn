@@ -1,4 +1,4 @@
-[gd_scene load_steps=83 format=3 uid="uid://buv258elxdw06"]
+[gd_scene load_steps=84 format=3 uid="uid://buv258elxdw06"]
 
 [ext_resource type="Script" path="res://scripts/space/space.gd" id="1_sokdp"]
 [ext_resource type="PackedScene" uid="uid://c58k7mpm0u853" path="res://scripts/space/space-object-kinematic.tscn" id="2_uaq1s"]
@@ -50,6 +50,7 @@
 [ext_resource type="Texture2D" uid="uid://bbc3re26e5roe" path="res://artstuff/cutscenes/voidcat_cs11_1.png" id="32_ov5va"]
 [ext_resource type="Texture2D" uid="uid://l0sxi7ihn8pi" path="res://artstuff/cutscenes/voidcat_cs11_2.png" id="33_4irg0"]
 [ext_resource type="Texture2D" uid="uid://dhi5u4f2xd74g" path="res://artstuff/cutscenes/voidcat_cs11_3.png" id="34_wb5pg"]
+[ext_resource type="AudioStream" uid="uid://cr2gs775xj7pb" path="res://Audio Assets/Music/Main theme/Black Cat while in Space.mp3" id="51_awuji"]
 
 [sub_resource type="AnimatedTexture" id="AnimatedTexture_55ku6"]
 frame_0/texture = ExtResource("10_5nesv")
@@ -324,3 +325,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("51_awuji")
+autoplay = true

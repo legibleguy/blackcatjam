@@ -19,6 +19,7 @@ func _on_level_timeout():
 	_play_cutscene(currentLevel)
 
 func _post_cutscene_level_init():
+	$AudioStreamPlayer.play()
 	if currentLevel == 0:
 		_initialize_planets()
 		_initialize_player()
@@ -93,6 +94,9 @@ func _initialize_planets():
 			printerr("space.gd: referencing an outdated method get_orbit_radius in MainGravityArea.gd")
 
 func _play_cutscene(idx : int):
+	if $AudioStreamPlayer.playing:
+		$AudioStreamPlayer.stop()
+	
 	for child in get_children(true):
 		if child.is_in_group("pauseable"):
 			if child.has_method("pause_requested"):
@@ -122,16 +126,15 @@ func _cutscene_over():
 	
 	print("cutscene over")
 	_post_cutscene_level_init()
-	
+
+func _audio_loop_finished():
+	if !$cutscenePlayer.active:
+		$AudioStreamPlayer.play()
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	RenderingServer.set_default_clear_color(Color(0.1,0.1,0.1))
 	$cutscenePlayer.cutscene_over.connect(_cutscene_over)
-	
-#	_initialize_planets()
-	
-#	_initialize_player()
 	
 	_play_cutscene(currentLevel)
 

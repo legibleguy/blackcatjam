@@ -1,8 +1,11 @@
-[gd_scene load_steps=5 format=3 uid="uid://b53qny25vcvi7"]
+[gd_scene load_steps=8 format=3 uid="uid://b53qny25vcvi7"]
 
 [ext_resource type="Script" path="res://scripts/cutscenePlayer.gd" id="1_tgep5"]
 [ext_resource type="Resource" uid="uid://djcvb4crfa2bb" path="res://cutscenes/sample_cutscene.tres" id="2_7yfe7"]
 [ext_resource type="FontFile" uid="uid://dnjaetxs8shbd" path="res://fonts/Spacecat-Regular.ttf" id="3_a3p7a"]
+[ext_resource type="AudioStream" uid="uid://cr1clgs2k4l3w" path="res://Audio Assets/Music/Cutscenes/CutscenesThemeLoop.wav" id="4_5ce7m"]
+[ext_resource type="AudioStream" uid="uid://iu7313bu1kqs" path="res://Audio Assets/Sound/UI/Page Flip.wav" id="4_28kmx"]
+[ext_resource type="AudioStream" uid="uid://dl1f2mg1ck15s" path="res://Audio Assets/Music/Cutscenes/CutscenesThemeIntro.wav" id="5_oke30"]
 
 [sub_resource type="Theme" id="Theme_pyfwo"]
 default_font = ExtResource("3_a3p7a")
@@ -60,3 +63,13 @@ text = "test test bla "
 horizontal_alignment = 1
 autowrap_mode = 3
 justification_flags = 169
+
+[node name="AudioStreamPlayerPageFlip" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_28kmx")
+
+[node name="AudioStreamPlayerLoop" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_5ce7m")
+
+[node name="AudioStreamPlayerIntro" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_oke30")
+autoplay = true
