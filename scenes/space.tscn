@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://buv258elxdw06"]
+[gd_scene load_steps=55 format=3 uid="uid://buv258elxdw06"]
 
 [ext_resource type="Script" path="res://scripts/space/space.gd" id="1_sokdp"]
 [ext_resource type="PackedScene" uid="uid://c58k7mpm0u853" path="res://scripts/space/space-object-kinematic.tscn" id="2_uaq1s"]
@@ -9,6 +9,166 @@
 [ext_resource type="Texture2D" uid="uid://xmu8d7067l4m" path="res://placeholders/Ice.png" id="5_ogb2x"]
 [ext_resource type="PackedScene" uid="uid://b341l1ynihh4m" path="res://scripts/space/orbit.tscn" id="5_po61e"]
 [ext_resource type="Shader" path="res://shaders/space.gdshader" id="9_lhsvs"]
+[ext_resource type="Texture2D" uid="uid://cj0ovkxlw315" path="res://artstuff/cutscenes/voidcat_csbg.png" id="9_oxs3q"]
+[ext_resource type="Texture2D" uid="uid://d35woh13fe8nt" path="res://artstuff/cutscenes/voidcat_cs4_1.png" id="9_pg3fr"]
+[ext_resource type="Texture2D" uid="uid://yjntts5fl3we" path="res://artstuff/cutscenes/voidcat_cs4_2.png" id="10_ogsb6"]
+[ext_resource type="Texture2D" uid="uid://0c6hysej4lgd" path="res://artstuff/cutscenes/voidcat_cs4_3.png" id="11_2lnon"]
+[ext_resource type="Script" path="res://cutscenes/CutsceneFrame.gd" id="12_043yk"]
+[ext_resource type="Texture2D" uid="uid://cu0awkbo4iawp" path="res://artstuff/cutscenes/voidcat_cs5_1.png" id="13_pd4s8"]
+[ext_resource type="Texture2D" uid="uid://btdj1cwru2i7c" path="res://artstuff/cutscenes/voidcat_cs5_2.png" id="14_cd6tq"]
+[ext_resource type="Texture2D" uid="uid://cbc6peji6obdk" path="res://artstuff/cutscenes/voidcat_cs5_3.png" id="15_mkmai"]
+[ext_resource type="Script" path="res://cutscenes/Cutscene.gd" id="16_mc2qd"]
+[ext_resource type="Texture2D" uid="uid://dtqqgwvtatfx5" path="res://artstuff/cutscenes/voidcat_cs6_1.png" id="17_uq0ls"]
+[ext_resource type="Texture2D" uid="uid://by2lqhlrw7ufk" path="res://artstuff/cutscenes/voidcat_cs6_2.png" id="18_wo5ga"]
+[ext_resource type="Texture2D" uid="uid://b5yg0ip3l50jn" path="res://artstuff/cutscenes/voidcat_cs6_3.png" id="19_xgrrv"]
+[ext_resource type="Texture2D" uid="uid://cyifyboyyqomk" path="res://artstuff/cutscenes/voidcat_cs7_1.png" id="20_nwgvs"]
+[ext_resource type="Texture2D" uid="uid://dkly4cdc2lqro" path="res://artstuff/cutscenes/voidcat_cs7_2.png" id="21_pmmb6"]
+[ext_resource type="Texture2D" uid="uid://c2mebk2rrxs6c" path="res://artstuff/cutscenes/voidcat_cs7_3.png" id="22_gsr57"]
+[ext_resource type="Texture2D" uid="uid://ora0fy0vc4db" path="res://artstuff/cutscenes/voidcat_cs8_1.png" id="23_6w4wb"]
+[ext_resource type="Texture2D" uid="uid://yc6616qqk4lc" path="res://artstuff/cutscenes/voidcat_cs8_2.png" id="24_jq7us"]
+[ext_resource type="Texture2D" uid="uid://4bb4nub6gpjk" path="res://artstuff/cutscenes/voidcat_cs8_3.png" id="25_6c2cb"]
+[ext_resource type="Texture2D" uid="uid://cq8d4plkk56c6" path="res://artstuff/cutscenes/voidcat_cs9_1.png" id="26_7ts5f"]
+[ext_resource type="Texture2D" uid="uid://but6ruickblcj" path="res://artstuff/cutscenes/voidcat_cs9_2.png" id="27_otkgs"]
+[ext_resource type="Texture2D" uid="uid://cydd2u12r12aq" path="res://artstuff/cutscenes/voidcat_cs9_3.png" id="28_nft4r"]
+[ext_resource type="Texture2D" uid="uid://bkxutpt53atix" path="res://artstuff/cutscenes/voidcat_cs10_1.png" id="29_c35r6"]
+[ext_resource type="Texture2D" uid="uid://b1xtntlpfpjdn" path="res://artstuff/cutscenes/voidcat_cs10_2.png" id="30_6yif4"]
+[ext_resource type="Texture2D" uid="uid://eudtns2xmmqg" path="res://artstuff/cutscenes/voidcat_cs10_3.png" id="31_ekv6u"]
+[ext_resource type="Texture2D" uid="uid://bbc3re26e5roe" path="res://artstuff/cutscenes/voidcat_cs11_1.png" id="32_ov5va"]
+[ext_resource type="Texture2D" uid="uid://l0sxi7ihn8pi" path="res://artstuff/cutscenes/voidcat_cs11_2.png" id="33_4irg0"]
+[ext_resource type="Texture2D" uid="uid://dhi5u4f2xd74g" path="res://artstuff/cutscenes/voidcat_cs11_3.png" id="34_wb5pg"]
+
+[sub_resource type="AnimatedTexture" id="AnimatedTexture_xoina"]
+frames = 3
+speed_scale = 1.5
+frame_0/texture = ExtResource("9_pg3fr")
+frame_1/texture = ExtResource("10_ogsb6")
+frame_1/duration = 1.0
+frame_2/texture = ExtResource("11_2lnon")
+frame_2/duration = 1.0
+
+[sub_resource type="Resource" id="Resource_8r766"]
+script = ExtResource("12_043yk")
+cutsceneSheet = SubResource("AnimatedTexture_xoina")
+cutsceneCaption = "Testa Caption 1 For the Test Cutscene 1"
+sheetFromPath = false
+sheetPath = ""
+
+[sub_resource type="AnimatedTexture" id="AnimatedTexture_cu4cc"]
+frames = 3
+speed_scale = 1.5
+frame_0/texture = ExtResource("13_pd4s8")
+frame_1/texture = ExtResource("14_cd6tq")
+frame_1/duration = 1.0
+frame_2/texture = ExtResource("15_mkmai")
+frame_2/duration = 1.0
+
+[sub_resource type="Resource" id="Resource_f0v4d"]
+script = ExtResource("12_043yk")
+cutsceneSheet = SubResource("AnimatedTexture_cu4cc")
+cutsceneCaption = "another frame"
+sheetFromPath = false
+sheetPath = ""
+
+[sub_resource type="AnimatedTexture" id="AnimatedTexture_8ebq6"]
+frames = 3
+speed_scale = 1.5
+frame_0/texture = ExtResource("17_uq0ls")
+frame_1/texture = ExtResource("18_wo5ga")
+frame_1/duration = 1.0
+frame_2/texture = ExtResource("19_xgrrv")
+frame_2/duration = 1.0
+
+[sub_resource type="Resource" id="Resource_cypc3"]
+script = ExtResource("12_043yk")
+cutsceneSheet = SubResource("AnimatedTexture_8ebq6")
+cutsceneCaption = ""
+sheetFromPath = false
+sheetPath = ""
+
+[sub_resource type="AnimatedTexture" id="AnimatedTexture_315pu"]
+frames = 3
+speed_scale = 1.5
+frame_0/texture = ExtResource("20_nwgvs")
+frame_1/texture = ExtResource("21_pmmb6")
+frame_1/duration = 1.0
+frame_2/texture = ExtResource("22_gsr57")
+frame_2/duration = 1.0
+
+[sub_resource type="Resource" id="Resource_cwcuh"]
+script = ExtResource("12_043yk")
+cutsceneSheet = SubResource("AnimatedTexture_315pu")
+cutsceneCaption = ""
+sheetFromPath = false
+sheetPath = ""
+
+[sub_resource type="AnimatedTexture" id="AnimatedTexture_g7gn2"]
+frames = 3
+speed_scale = 1.5
+frame_0/texture = ExtResource("23_6w4wb")
+frame_1/texture = ExtResource("24_jq7us")
+frame_1/duration = 1.0
+frame_2/texture = ExtResource("25_6c2cb")
+frame_2/duration = 1.0
+
+[sub_resource type="Resource" id="Resource_21hkw"]
+script = ExtResource("12_043yk")
+cutsceneSheet = SubResource("AnimatedTexture_g7gn2")
+cutsceneCaption = ""
+sheetFromPath = false
+sheetPath = ""
+
+[sub_resource type="AnimatedTexture" id="AnimatedTexture_v4n0t"]
+frames = 3
+speed_scale = 1.5
+frame_0/texture = ExtResource("26_7ts5f")
+frame_1/texture = ExtResource("27_otkgs")
+frame_1/duration = 1.0
+frame_2/texture = ExtResource("28_nft4r")
+frame_2/duration = 1.0
+
+[sub_resource type="Resource" id="Resource_rxik7"]
+script = ExtResource("12_043yk")
+cutsceneSheet = SubResource("AnimatedTexture_v4n0t")
+cutsceneCaption = ""
+sheetFromPath = false
+sheetPath = ""
+
+[sub_resource type="AnimatedTexture" id="AnimatedTexture_p82og"]
+frames = 3
+speed_scale = 1.5
+frame_0/texture = ExtResource("29_c35r6")
+frame_1/texture = ExtResource("30_6yif4")
+frame_1/duration = 1.0
+frame_2/texture = ExtResource("31_ekv6u")
+frame_2/duration = 1.0
+
+[sub_resource type="Resource" id="Resource_3fbfr"]
+script = ExtResource("12_043yk")
+cutsceneSheet = SubResource("AnimatedTexture_p82og")
+cutsceneCaption = ""
+sheetFromPath = false
+sheetPath = ""
+
+[sub_resource type="AnimatedTexture" id="AnimatedTexture_1ga3e"]
+frames = 3
+speed_scale = 1.5
+frame_0/texture = ExtResource("32_ov5va")
+frame_1/texture = ExtResource("33_4irg0")
+frame_1/duration = 1.0
+frame_2/texture = ExtResource("34_wb5pg")
+frame_2/duration = 1.0
+
+[sub_resource type="Resource" id="Resource_nwku1"]
+script = ExtResource("12_043yk")
+cutsceneSheet = SubResource("AnimatedTexture_1ga3e")
+cutsceneCaption = ""
+sheetFromPath = false
+sheetPath = ""
+
+[sub_resource type="Resource" id="Resource_aphk6"]
+script = ExtResource("16_mc2qd")
+cutsceneBackground = ExtResource("9_oxs3q")
+cutsceneFrames = [SubResource("Resource_8r766"), SubResource("Resource_f0v4d"), SubResource("Resource_cypc3"), SubResource("Resource_cwcuh"), SubResource("Resource_21hkw"), SubResource("Resource_rxik7"), SubResource("Resource_3fbfr"), SubResource("Resource_nwku1")]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_lwqgf"]
 shader = ExtResource("9_lhsvs")
@@ -26,6 +186,7 @@ playerScene = ExtResource("3_vh4up")
 scale = Vector2(5.46357, 5.46357)
 
 [node name="cutscenePlayer" parent="." instance=ExtResource("5_0weu8")]
+cutscenes = Array[ExtResource("16_mc2qd")]([SubResource("Resource_aphk6")])
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
 

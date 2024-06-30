@@ -14,12 +14,14 @@ func init_cutscene(idx : int):
 	currCutsceneIdx = idx
 	currFrame = -1
 	$Main.visible = true
+	$Main/CanvasLayer.visible = true
 	if !proceed():
 		end_curr_cutscene()
 
 func end_curr_cutscene():
 	active = false
 	$Main.visible = false
+	$Main/CanvasLayer.visible = false
 	cutscene_over.emit()
 
 # Called when the node enters the scene tree for the first time.
@@ -35,9 +37,17 @@ func proceed() -> bool:
 			if currCutscene.cutsceneFrames.size() > currFrame:
 				var frame : CutsceneFrame = (currCutscene.cutsceneFrames[currFrame] as CutsceneFrame)
 				if frame != null:
-					$Main/Sprite2D.texture = frame.cutsceneSheet
-					$Main/Label.text = frame.cutsceneCaption
+					find_child("Sprite2D").texture = frame.cutsceneSheet
+					find_child("Label").text = frame.cutsceneCaption
 					result = true
+				var bg = null
+				if frame.customBackground != null:
+					bg = frame.customBackground
+				elif currCutscene.cutsceneBackground != null:
+					bg = currCutscene.cutsceneBackground
+				
+				if bg != null:
+					$Main/CanvasLayer/CenterContainerBG/Background.texture = bg
 	return result
 
 func _physics_process(delta):
