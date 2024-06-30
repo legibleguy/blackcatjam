@@ -49,7 +49,6 @@ func proceed() -> bool:
 				var frame : CutsceneFrame = (currCutscene.cutsceneFrames[currFrame] as CutsceneFrame)
 				if frame != null:
 					find_child("Sprite2D").texture = frame.cutsceneSheet
-					(find_child("Sprite2D").texture as AnimatedTexture).current_frame = 0
 					find_child("Label").text = frame.cutsceneCaption
 					
 					$AudioStreamPlayerPageFlip.play()
