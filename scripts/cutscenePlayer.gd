@@ -16,6 +16,7 @@ func init_cutscene(idx : int):
 	$Main.visible = true
 	$Main/CanvasLayer.visible = true
 	$AudioStreamPlayerIntro.play()
+	$Main/CanvasLayer/MouseHint.visible = true
 	if !proceed():
 		end_curr_cutscene()
 
@@ -50,7 +51,7 @@ func proceed() -> bool:
 				if frame != null:
 					find_child("Sprite2D").texture = frame.cutsceneSheet
 					find_child("Label").text = frame.cutsceneCaption
-					
+					$Main/CanvasLayer/MouseHint.visible = false
 					$AudioStreamPlayerPageFlip.play()
 					result = true
 				

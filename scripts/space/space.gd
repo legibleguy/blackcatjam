@@ -7,6 +7,9 @@ extends Node2D
 @export var planetTexturesPool : Array[Texture] = []
 var currentSpaceObjectCount : int = 0
 
+@export_group("Tutorials")
+@export var tut0 : PackedScene
+
 @export_group("Player Player Spawn")
 @export var playerScene : PackedScene
 @export var playerRelatedStuffScene : PackedScene
@@ -18,15 +21,17 @@ var currentTargetPlanets : int = 8
 const NUM_LEVELS = 5
 
 func _on_level_timeout():
-	currentLevel += 1
-	_play_cutscene(currentLevel)
+	get_tree().change_scene_to_file("res://scenes/end.tscn")
+#	currentLevel += 1
+#	_play_cutscene(currentLevel)
 
 func _post_cutscene_level_init():
 	$AudioStreamPlayer.play()
 	if currentLevel == 0:
 		_initialize_planets()
 		_initialize_player()
-		playerStuffReference.start_timer(45)
+		playerStuffReference.start_timer(60)
+		playerReference.add_child(tut0.instantiate())
 	elif currentLevel == 1:
 		pass
 	elif currentLevel == 2:
@@ -43,7 +48,7 @@ func _initialize_player():
 		var orbit_pos = mainArea.position
 		var orbit_radius = mainArea.get_orbit_radius()
 		if playerScene != null:
-			var spawnscale = 1.6
+			var spawnscale = 1.0
 			var spawndir : Vector2 = Vector2.UP * ((float(floor(numRadiusSubdivisions/2)) + 0.25)) / float(numRadiusSubdivisions) * orbit_radius
 			var playerObject : Node2D = playerScene.instantiate()
 			var playerRelatedStuffRef : Node2D = playerRelatedStuffScene.instantiate()
@@ -57,7 +62,7 @@ func _initialize_player():
 			playerReference = playerObject
 			playerStuffReference = playerRelatedStuffRef
 			
-			var gameovertimer = playerReference.find_child("GameOverTimer")
+			var gameovertimer = playerStuffReference.find_child("GameOverTimer")
 			if gameovertimer != null and (gameovertimer as Timer) != null:
 				print("Timeout event registered")
 				gameovertimer.timeout.connect(_on_level_timeout)
@@ -156,6 +161,7 @@ func _physics_process(delta):
 		$ParallaxBackground/ColorRect.material.set("shader_parameter/refpos", Vector4(-playerReference.position.x, -playerReference.position.y, 0, 0))
 	
 func _draw():
+	return
 	var mainArea = find_child("MainGravityArea")
 	
 	if (not mainArea == null) and mainArea.has_method("get_orbit_radius"):

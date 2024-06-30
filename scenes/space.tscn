@@ -1,4 +1,4 @@
-[gd_scene load_steps=82 format=3 uid="uid://buv258elxdw06"]
+[gd_scene load_steps=83 format=3 uid="uid://buv258elxdw06"]
 
 [ext_resource type="Script" path="res://scripts/space/space.gd" id="1_sokdp"]
 [ext_resource type="PackedScene" uid="uid://c58k7mpm0u853" path="res://scripts/space/space-object-kinematic.tscn" id="2_uaq1s"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://b53qny25vcvi7" path="res://scripts/cutscene_player.tscn" id="5_0weu8"]
 [ext_resource type="Texture2D" uid="uid://xmu8d7067l4m" path="res://placeholders/Ice.png" id="5_ogb2x"]
 [ext_resource type="PackedScene" uid="uid://b341l1ynihh4m" path="res://scripts/space/orbit.tscn" id="5_po61e"]
+[ext_resource type="PackedScene" uid="uid://ca1p8xi0t1a12" path="res://scripts/tutorials/level0tut.tscn" id="6_k3lmx"]
 [ext_resource type="PackedScene" uid="uid://b5ieaw47mgio8" path="res://scripts/player/player_stuff.tscn" id="7_oinms"]
 [ext_resource type="Shader" path="res://shaders/space.gdshader" id="9_lhsvs"]
 [ext_resource type="Texture2D" uid="uid://cj0ovkxlw315" path="res://artstuff/cutscenes/voidcat_csbg.png" id="9_oxs3q"]
@@ -302,6 +303,7 @@ spaceObjectScene = ExtResource("2_uaq1s")
 targetSpaceObjectCount = 128
 numRadiusSubdivisions = 6
 planetTexturesPool = Array[Texture]([ExtResource("3_vyoqg"), ExtResource("4_t85re"), ExtResource("5_ogb2x")])
+tut0 = ExtResource("6_k3lmx")
 playerScene = ExtResource("3_vh4up")
 playerRelatedStuffScene = ExtResource("7_oinms")
 

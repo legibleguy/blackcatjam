@@ -1,0 +1,37 @@
+[gd_scene load_steps=5 format=3 uid="uid://buv2dl6hq5ag"]
+
+[ext_resource type="Script" path="res://scenes/end.gd" id="1_uu5h5"]
+[ext_resource type="FontFile" uid="uid://dnjaetxs8shbd" path="res://fonts/Spacecat-Regular.ttf" id="2_tqrp0"]
+[ext_resource type="AudioStream" uid="uid://bqm0srcxqswqg" path="res://Audio Assets/Music/Ending/Ending - Full.wav" id="3_x1tbp"]
+
+[sub_resource type="Theme" id="Theme_7tn40"]
+default_font = ExtResource("2_tqrp0")
+default_font_size = 64
+
+[node name="end" type="Node2D"]
+position = Vector2(590, 344)
+script = ExtResource("1_uu5h5")
+
+[node name="Label2" type="Label" parent="."]
+offset_left = -283.0
+offset_top = -226.0
+offset_right = 285.0
+offset_bottom = -52.0
+theme = SubResource("Theme_7tn40")
+text = "you lost:)"
+horizontal_alignment = 1
+
+[node name="Label" type="Label" parent="."]
+offset_left = -280.0
+offset_top = 7.0
+offset_right = 288.0
+offset_bottom = 181.0
+theme = SubResource("Theme_7tn40")
+text = "thank you!
+that's all we had time for.
+see you next jam"
+horizontal_alignment = 1
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_x1tbp")
+autoplay = true

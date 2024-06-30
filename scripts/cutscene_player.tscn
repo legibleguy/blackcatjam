@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://b53qny25vcvi7"]
+[gd_scene load_steps=8 format=3 uid="uid://b53qny25vcvi7"]
 
 [ext_resource type="Script" path="res://scripts/cutscenePlayer.gd" id="1_tgep5"]
 [ext_resource type="FontFile" uid="uid://dnjaetxs8shbd" path="res://fonts/Spacecat-Regular.ttf" id="3_a3p7a"]
@@ -9,6 +9,11 @@
 [sub_resource type="Theme" id="Theme_pyfwo"]
 default_font = ExtResource("3_a3p7a")
 default_font_size = 64
+
+[sub_resource type="LabelSettings" id="LabelSettings_6koeb"]
+font = ExtResource("3_a3p7a")
+font_size = 32
+font_color = Color(0.0862745, 0.0862745, 0.0862745, 0.878431)
 
 [node name="cutscenePlayer" type="Node"]
 script = ExtResource("1_tgep5")
@@ -58,6 +63,25 @@ grow_vertical = 0
 theme = SubResource("Theme_pyfwo")
 theme_override_colors/font_color = Color(0.0313726, 0.0313726, 0.0313726, 1)
 text = "test test bla "
+horizontal_alignment = 1
+autowrap_mode = 3
+justification_flags = 169
+
+[node name="MouseHint" type="Label" parent="Main/CanvasLayer"]
+clip_contents = true
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -400.0
+offset_top = -56.0
+offset_right = 400.0
+offset_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "Click LMB to proceed"
+label_settings = SubResource("LabelSettings_6koeb")
 horizontal_alignment = 1
 autowrap_mode = 3
 justification_flags = 169
