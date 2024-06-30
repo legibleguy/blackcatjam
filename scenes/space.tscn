@@ -1,4 +1,4 @@
-[gd_scene load_steps=81 format=3 uid="uid://buv258elxdw06"]
+[gd_scene load_steps=82 format=3 uid="uid://buv258elxdw06"]
 
 [ext_resource type="Script" path="res://scripts/space/space.gd" id="1_sokdp"]
 [ext_resource type="PackedScene" uid="uid://c58k7mpm0u853" path="res://scripts/space/space-object-kinematic.tscn" id="2_uaq1s"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://b53qny25vcvi7" path="res://scripts/cutscene_player.tscn" id="5_0weu8"]
 [ext_resource type="Texture2D" uid="uid://xmu8d7067l4m" path="res://placeholders/Ice.png" id="5_ogb2x"]
 [ext_resource type="PackedScene" uid="uid://b341l1ynihh4m" path="res://scripts/space/orbit.tscn" id="5_po61e"]
+[ext_resource type="PackedScene" uid="uid://b5ieaw47mgio8" path="res://scripts/player/player_stuff.tscn" id="7_oinms"]
 [ext_resource type="Shader" path="res://shaders/space.gdshader" id="9_lhsvs"]
 [ext_resource type="Texture2D" uid="uid://cj0ovkxlw315" path="res://artstuff/cutscenes/voidcat_csbg.png" id="9_oxs3q"]
 [ext_resource type="Texture2D" uid="uid://d35woh13fe8nt" path="res://artstuff/cutscenes/voidcat_cs4_1.png" id="9_pg3fr"]
@@ -302,6 +303,7 @@ targetSpaceObjectCount = 128
 numRadiusSubdivisions = 6
 planetTexturesPool = Array[Texture]([ExtResource("3_vyoqg"), ExtResource("4_t85re"), ExtResource("5_ogb2x")])
 playerScene = ExtResource("3_vh4up")
+playerRelatedStuffScene = ExtResource("7_oinms")
 
 [node name="MainGravityArea" parent="." instance=ExtResource("5_po61e")]
 scale = Vector2(5.46357, 5.46357)
@@ -321,4 +323,3 @@ grow_vertical = 2
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("51_awuji")
-autoplay = true

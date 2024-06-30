@@ -9,9 +9,12 @@ var currentSpaceObjectCount : int = 0
 
 @export_group("Player Player Spawn")
 @export var playerScene : PackedScene
+@export var playerRelatedStuffScene : PackedScene
+var playerStuffReference
 var playerReference
 
 var currentLevel : int = 0
+var currentTargetPlanets : int = 8
 const NUM_LEVELS = 5
 
 func _on_level_timeout():
@@ -23,6 +26,7 @@ func _post_cutscene_level_init():
 	if currentLevel == 0:
 		_initialize_planets()
 		_initialize_player()
+		playerStuffReference.start_timer(45)
 	elif currentLevel == 1:
 		pass
 	elif currentLevel == 2:
@@ -42,10 +46,16 @@ func _initialize_player():
 			var spawnscale = 1.6
 			var spawndir : Vector2 = Vector2.UP * ((float(floor(numRadiusSubdivisions/2)) + 0.25)) / float(numRadiusSubdivisions) * orbit_radius
 			var playerObject : Node2D = playerScene.instantiate()
+			var playerRelatedStuffRef : Node2D = playerRelatedStuffScene.instantiate()
 			add_child(playerObject)
+			playerObject.add_child(playerRelatedStuffRef)
 			playerObject.position = orbit_pos + spawndir
 			playerObject.scale = Vector2(spawnscale, spawnscale)
+			
+			playerRelatedStuffRef.position = Vector2.ZERO
+			
 			playerReference = playerObject
+			playerStuffReference = playerRelatedStuffRef
 			
 			var gameovertimer = playerReference.find_child("GameOverTimer")
 			if gameovertimer != null and (gameovertimer as Timer) != null:
@@ -87,6 +97,9 @@ func _initialize_planets():
 				add_child(newSpaceObject)
 				newSpaceObject.position = spawn_pos
 				newSpaceObject.scale = Vector2(spawn_scale, spawn_scale)
+				
+				if planetTexturesPool.size() > 0:
+					newSpaceObject.find_child("Sprite").texture = planetTexturesPool.pick_random()
 	else:
 		if mainArea == null:
 			printerr("Couldn't find MainGravityArea")
@@ -101,7 +114,6 @@ func _play_cutscene(idx : int):
 		if child.is_in_group("pauseable"):
 			if child.has_method("pause_requested"):
 				child.pause_requested()
-
 	
 	if playerReference != null:
 		var camera_ref = playerReference.find_child("PlayerCamera")
@@ -135,6 +147,7 @@ func _audio_loop_finished():
 func _ready():
 	RenderingServer.set_default_clear_color(Color(0.1,0.1,0.1))
 	$cutscenePlayer.cutscene_over.connect(_cutscene_over)
+	$AudioStreamPlayer.finished.connect(_audio_loop_finished)
 	
 	_play_cutscene(currentLevel)
 

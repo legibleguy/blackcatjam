@@ -46,7 +46,7 @@ const int volsteps = 5;
 const float stepsize = 0.050;
 
 
-const float zoom = 0.800;
+const float zoom = 10.800;
 
 const float tile = 0.850;
 

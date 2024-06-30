@@ -1,0 +1,53 @@
+[gd_scene load_steps=6 format=3 uid="uid://b5ieaw47mgio8"]
+
+[ext_resource type="Script" path="res://scripts/player/blackhole_playerstuff.gd" id="1_a0mgy"]
+[ext_resource type="FontFile" uid="uid://dnjaetxs8shbd" path="res://fonts/Spacecat-Regular.ttf" id="2_cilo8"]
+
+[sub_resource type="Theme" id="Theme_6a0cp"]
+default_font_size = 55
+
+[sub_resource type="LabelSettings" id="LabelSettings_ru023"]
+font = ExtResource("2_cilo8")
+font_size = 64
+
+[sub_resource type="LabelSettings" id="LabelSettings_hdcyu"]
+font = ExtResource("2_cilo8")
+font_size = 96
+
+[node name="PlayerStuff" type="Node2D" groups=["pauseable"]]
+script = ExtResource("1_a0mgy")
+
+[node name="GameOverTimer" type="Timer" parent="."]
+wait_time = 30.0
+one_shot = true
+
+[node name="PlayerCamera" type="Camera2D" parent="." groups=["pauseable"]]
+position_smoothing_enabled = true
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer"]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -69.5
+offset_right = 69.5
+offset_bottom = 162.0
+grow_horizontal = 2
+
+[node name="TimeLabel2" type="Label" parent="CanvasLayer/VBoxContainer"]
+layout_mode = 2
+theme = SubResource("Theme_6a0cp")
+text = "Time Left
+"
+label_settings = SubResource("LabelSettings_ru023")
+horizontal_alignment = 1
+
+[node name="TimeLabel" type="Label" parent="CanvasLayer/VBoxContainer"]
+layout_mode = 2
+theme = SubResource("Theme_6a0cp")
+text = "00:00
+"
+label_settings = SubResource("LabelSettings_hdcyu")
+horizontal_alignment = 1

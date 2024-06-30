@@ -1,7 +1,6 @@
-[gd_scene load_steps=8 format=3 uid="uid://b53qny25vcvi7"]
+[gd_scene load_steps=7 format=3 uid="uid://b53qny25vcvi7"]
 
 [ext_resource type="Script" path="res://scripts/cutscenePlayer.gd" id="1_tgep5"]
-[ext_resource type="Resource" uid="uid://djcvb4crfa2bb" path="res://cutscenes/sample_cutscene.tres" id="2_7yfe7"]
 [ext_resource type="FontFile" uid="uid://dnjaetxs8shbd" path="res://fonts/Spacecat-Regular.ttf" id="3_a3p7a"]
 [ext_resource type="AudioStream" uid="uid://cr1clgs2k4l3w" path="res://Audio Assets/Music/Cutscenes/CutscenesThemeLoop.wav" id="4_5ce7m"]
 [ext_resource type="AudioStream" uid="uid://iu7313bu1kqs" path="res://Audio Assets/Sound/UI/Page Flip.wav" id="4_28kmx"]
@@ -13,7 +12,6 @@ default_font_size = 64
 
 [node name="cutscenePlayer" type="Node"]
 script = ExtResource("1_tgep5")
-cutscenes = Array[Resource("res://cutscenes/Cutscene.gd")]([ExtResource("2_7yfe7")])
 
 [node name="Main" type="Node2D" parent="."]
 

@@ -50,6 +50,9 @@ func on_orbit_behavior_changed(in_orbit):
 		_reinitialize_away_factor()
 
 func _reinitialize_away_factor():
+	if orbits.size() == 0:
+		return
+	
 	var curr_orbit_behavior
 	if _get_curr_orbit().has_method("get_orbit_behavior"):
 			curr_orbit_behavior = _get_curr_orbit().get_orbit_behavior()
@@ -92,6 +95,12 @@ func _on_entered_orbit(body):
 		
 		_reinitialize_away_factor()
 
+func _on_exit_orbit(body):
+	if body.is_in_group("orbits") and body in orbits:
+		orbits.erase(body)
+		
+		_reinitialize_away_factor()
+
 func keep_body_in(orbit_pos, orbit_radius, delta):
 	var targetPoint = orbit_pos + (orbit_pos.direction_to(position) * orbit_radius * awayFromCenter)
 	speed = remap(orbit_radius, 800, 2000, 1, 20) * global_speed_scale
@@ -107,6 +116,16 @@ func body_avoid(orbit_pos, orbit_radius, delta):
 	targetVelocity.y = targetVelocity.y + (0 - targetVelocity.y) * (delta * 8)
 	move_and_collide(targetVelocity)
 
+func force_leave_orbit():
+	targetVelocity = avoidanceStartVel.orthogonal() * 1.34
+	_set_curr_movement_state(MOVEMENT_STATE.IGNORE_ORBITS_KEEP_VELOCITY)
+
+func play_eat_warning():
+	$AnimationPlayer.play("planet_shake", -1, 3)
+
+func stop_eat_warning():
+	$AnimationPlayer.stop(false)
+	
 func _physics_process(delta):
 	
 	if physics_paused:
@@ -163,8 +182,8 @@ func _physics_process(delta):
 			move_and_collide(targetVelocity)
 			
 			if avoidanceProgress > 0.9:
-				targetVelocity = avoidanceStartVel.orthogonal() * 1.34
-				_set_curr_movement_state(MOVEMENT_STATE.IGNORE_ORBITS_KEEP_VELOCITY)
+				force_leave_orbit()
+				
 	else:
 		move_and_collide(Vector2.DOWN * 9.8)
 

@@ -2,8 +2,8 @@ extends Node2D
 
 var time_started = false
 
-# Called when the node enters the scene tree for the first time.
-func _ready():
+func start_timer(inTime : float):
+	$GameOverTimer.wait_time = inTime
 	$GameOverTimer.start()
 	
 	var minutes : int = floori($GameOverTimer.time_left / 60)
@@ -13,6 +13,10 @@ func _ready():
 	$CanvasLayer/VBoxContainer/TimeLabel.text = str_mins + ":" + str_secs
 	$CanvasLayer/VBoxContainer/TimeLabel.visible = true
 	time_started = true
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	pass
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
