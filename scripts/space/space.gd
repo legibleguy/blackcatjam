@@ -48,7 +48,7 @@ func _initialize_player():
 		var orbit_pos = mainArea.position
 		var orbit_radius = mainArea.get_orbit_radius()
 		if playerScene != null:
-			var spawnscale = 1.0
+			var spawnscale = 1.5
 			var spawndir : Vector2 = Vector2.UP * ((float(floor(numRadiusSubdivisions/2)) + 0.25)) / float(numRadiusSubdivisions) * orbit_radius
 			var playerObject : Node2D = playerScene.instantiate()
 			var playerRelatedStuffRef : Node2D = playerRelatedStuffScene.instantiate()

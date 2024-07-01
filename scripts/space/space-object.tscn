@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://ds0q23xnmslfy"]
+[gd_scene load_steps=6 format=3 uid="uid://ds0q23xnmslfy"]
 
 [ext_resource type="Texture2D" uid="uid://doog6k7p5rvox" path="res://placeholders/Baren.png" id="1_244pe"]
 [ext_resource type="Script" path="res://scripts/space/space-object.gd" id="1_fm6pb"]
 [ext_resource type="Texture2D" uid="uid://bejajc4nboby4" path="res://icon.svg" id="3_mn2jg"]
+[ext_resource type="AudioStream" uid="uid://cj03cqm1fy5ma" path="res://Audio Assets/Sound/Pop.wav" id="4_s0j43"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_8s51u"]
 radius = 28.0
@@ -31,3 +32,10 @@ position = Vector2(5, -47)
 rotation = -0.786957
 scale = Vector2(0.0418086, 0.19373)
 texture = ExtResource("3_mn2jg")
+
+[node name="ReadyToBeSucked" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_s0j43")
+pitch_scale = 2.83
+
+[node name="Collected" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_s0j43")

@@ -1,6 +1,24 @@
-[gd_scene load_steps=4 format=3 uid="uid://ca1p8xi0t1a12"]
+[gd_scene load_steps=10 format=3 uid="uid://ca1p8xi0t1a12"]
 
 [ext_resource type="Script" path="res://scripts/tutorials/level0tut.gd" id="1_cvkku"]
+[ext_resource type="FontFile" uid="uid://dnjaetxs8shbd" path="res://fonts/Spacecat-Regular.ttf" id="2_ofqws"]
+[ext_resource type="AudioStream" uid="uid://jyur8wxtbs7u" path="res://Audio Assets/Sound/UI/UI.wav" id="3_oy4qv"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_iee30"]
+font = ExtResource("2_ofqws")
+font_size = 600
+
+[sub_resource type="LabelSettings" id="LabelSettings_6bwia"]
+font = ExtResource("2_ofqws")
+font_size = 600
+
+[sub_resource type="LabelSettings" id="LabelSettings_u3uaf"]
+font = ExtResource("2_ofqws")
+font_size = 600
+
+[sub_resource type="LabelSettings" id="LabelSettings_tdqmm"]
+font = ExtResource("2_ofqws")
+font_size = 600
 
 [sub_resource type="Animation" id="Animation_r3off"]
 resource_name = "blip"
@@ -29,42 +47,55 @@ script = ExtResource("1_cvkku")
 [node name="section1" type="Node2D" parent="."]
 
 [node name="DebugLabel" type="Label" parent="section1"]
-offset_left = -80.0
+offset_left = -100.0
 offset_top = -59.0
-offset_right = 78.0
+offset_right = 111.0
 offset_bottom = -33.0
+scale = Vector2(0.05, 0.05)
 text = "use W,A,S,D to move"
+label_settings = SubResource("LabelSettings_iee30")
+horizontal_alignment = 1
 
 [node name="DebugLabel2" type="Label" parent="section1"]
-offset_left = -85.0
-offset_top = 29.0
-offset_right = 92.0
-offset_bottom = 81.0
-text = "LMB to start sucking in 
-   attracted planets"
+offset_left = -112.0
+offset_top = 32.0
+offset_right = 4429.0
+offset_bottom = 969.0
+scale = Vector2(0.05, 0.05)
+text = "Hold LMB to suck in 
+attracted planets"
+label_settings = SubResource("LabelSettings_6bwia")
+horizontal_alignment = 1
 
 [node name="section2" type="Node2D" parent="."]
 visible = false
 
 [node name="DebugLabel" type="Label" parent="section2"]
-offset_left = -123.0
-offset_top = -111.0
-offset_right = 121.0
-offset_bottom = -7.0
+offset_left = -142.0
+offset_top = -103.0
+offset_right = 5638.0
+offset_bottom = 834.0
+scale = Vector2(0.05, 0.05)
 text = "Release LMB when the planet
 is shaking to collect it"
+label_settings = SubResource("LabelSettings_u3uaf")
 horizontal_alignment = 1
 
 [node name="DebugLabel2" type="Label" parent="section2"]
-offset_left = -145.0
-offset_top = 29.0
-offset_right = 147.0
-offset_bottom = 81.0
+offset_left = -201.0
+offset_top = 64.0
+offset_right = 7910.0
+offset_bottom = 1001.0
+scale = Vector2(0.05, 0.05)
 text = "if you suck it in too much,
 the cat will eat it instead of collecting!"
+label_settings = SubResource("LabelSettings_tdqmm")
 horizontal_alignment = 1
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
 "": SubResource("AnimationLibrary_5ro6y")
 }
+
+[node name="ClickSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_oy4qv")

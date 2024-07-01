@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://b5ieaw47mgio8"]
+[gd_scene load_steps=7 format=3 uid="uid://b5ieaw47mgio8"]
 
 [ext_resource type="Script" path="res://scripts/player/blackhole_playerstuff.gd" id="1_a0mgy"]
 [ext_resource type="FontFile" uid="uid://dnjaetxs8shbd" path="res://fonts/Spacecat-Regular.ttf" id="2_cilo8"]
+[ext_resource type="FontFile" uid="uid://bvqd7rfkmgr8e" path="res://fonts/GOODDP__.TTF" id="3_aits8"]
 
 [sub_resource type="Theme" id="Theme_6a0cp"]
 default_font_size = 55
@@ -11,7 +12,7 @@ font = ExtResource("2_cilo8")
 font_size = 64
 
 [sub_resource type="LabelSettings" id="LabelSettings_hdcyu"]
-font = ExtResource("2_cilo8")
+font = ExtResource("3_aits8")
 font_size = 96
 
 [node name="PlayerStuff" type="Node2D" groups=["pauseable"]]

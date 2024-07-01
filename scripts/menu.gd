@@ -9,6 +9,7 @@ func _start_pressed():
 	print("pressed")
 	$Sprite2D.visible = true
 	$AnimationPlayer.play("fade_in")
+	$Click_Sound.play()
 
 # Called when the node enters the scene tree for the first time.
 func _ready():

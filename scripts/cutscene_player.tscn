@@ -91,7 +91,9 @@ stream = ExtResource("4_28kmx")
 
 [node name="AudioStreamPlayerLoop" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("4_5ce7m")
+bus = &"Music"
 
 [node name="AudioStreamPlayerIntro" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("5_oke30")
 autoplay = true
+bus = &"Music"

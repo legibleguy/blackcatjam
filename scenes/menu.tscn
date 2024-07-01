@@ -1,8 +1,9 @@
-[gd_scene load_steps=9 format=3 uid="uid://ntlf2ac8s3c1"]
+[gd_scene load_steps=10 format=3 uid="uid://ntlf2ac8s3c1"]
 
 [ext_resource type="Script" path="res://scripts/menu.gd" id="1_ovsat"]
 [ext_resource type="FontFile" uid="uid://dnjaetxs8shbd" path="res://fonts/Spacecat-Regular.ttf" id="2_g68rl"]
 [ext_resource type="Texture2D" uid="uid://dcmsx37ylyqvc" path="res://scenes/menu/manucat.tres" id="2_lpk0d"]
+[ext_resource type="AudioStream" uid="uid://jyur8wxtbs7u" path="res://Audio Assets/Sound/UI/UI.wav" id="4_5tj5i"]
 
 [sub_resource type="Theme" id="Theme_2nq13"]
 default_font = ExtResource("2_g68rl")
@@ -92,5 +93,8 @@ texture = SubResource("GradientTexture2D_fyc7q")
 libraries = {
 "": SubResource("AnimationLibrary_70ydh")
 }
+
+[node name="Click_Sound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_5tj5i")
 
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]

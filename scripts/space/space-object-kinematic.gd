@@ -92,7 +92,6 @@ func _on_entered_orbit(body):
 	
 	if body.is_in_group("orbits"):
 		orbits.push_back(body)
-		
 		_reinitialize_away_factor()
 
 func _on_exit_orbit(body):
@@ -103,7 +102,7 @@ func _on_exit_orbit(body):
 
 func keep_body_in(orbit_pos, orbit_radius, delta):
 	var targetPoint = orbit_pos + (orbit_pos.direction_to(position) * orbit_radius * awayFromCenter)
-	speed = remap(orbit_radius, 800, 2000, 1, 20) * global_speed_scale
+	speed = remap(orbit_radius, 800, 2000, 1, 20) * global_speed_scale * 0.2 #уменьшаем скорость планет
 	if useSmoothVelocity:
 		var interpSpeed = remap(orbit_radius, 800, 2000, 0.1, 0.5)
 		targetVelocity = targetVelocity + ((targetPoint - position + orbit_pos.direction_to(position).orthogonal() * speed) - targetVelocity) * (delta * interpSpeed)

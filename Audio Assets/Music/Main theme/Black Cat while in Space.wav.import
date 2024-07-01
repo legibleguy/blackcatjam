@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://dr6odmdlyqca"
+path="res://.godot/imported/Black Cat while in Space.wav-b47f7f658674a08efc4e347fdc549fc0.sample"
+
+[deps]
+
+source_file="res://Audio Assets/Music/Main theme/Black Cat while in Space.wav"
+dest_files=["res://.godot/imported/Black Cat while in Space.wav-b47f7f658674a08efc4e347fdc549fc0.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

@@ -1,14 +1,63 @@
-[gd_scene load_steps=11 format=3 uid="uid://x05gtuy8f2a5"]
+[gd_scene load_steps=25 format=3 uid="uid://x05gtuy8f2a5"]
 
 [ext_resource type="Script" path="res://scripts/player/blackhole.gd" id="1_n1usp"]
 [ext_resource type="Texture2D" uid="uid://c2m8g2e5tyd8t" path="res://artstuff/voidshape1.png" id="3_lpl44"]
 [ext_resource type="PackedScene" uid="uid://b341l1ynihh4m" path="res://scripts/space/orbit.tscn" id="3_wjk8f"]
 [ext_resource type="Texture2D" uid="uid://c4niriqg6f0i" path="res://artstuff/voidshape2.png" id="4_f0cjg"]
+[ext_resource type="Texture2D" uid="uid://couahml3401yy" path="res://artstuff/Suck1.png" id="5_0vwnl"]
 [ext_resource type="Texture2D" uid="uid://cbde3qgrhb7ti" path="res://artstuff/voidshape3.png" id="5_djvpj"]
 [ext_resource type="Script" path="res://scripts/player/PlanetCollectionOrganizer.gd" id="6_htful"]
+[ext_resource type="AudioStream" uid="uid://jyur8wxtbs7u" path="res://Audio Assets/Sound/UI/UI.wav" id="7_q17ko"]
+[ext_resource type="AudioStream" uid="uid://cj03cqm1fy5ma" path="res://Audio Assets/Sound/Pop.wav" id="8_p4mv1"]
+[ext_resource type="AudioStream" uid="uid://dcc6pwvc8sa1s" path="res://Audio Assets/Sound/Unstuck.wav" id="9_aceth"]
+[ext_resource type="AudioStream" uid="uid://dsecme2bku8n8" path="res://Audio Assets/Sound/SuckEnd.wav" id="9_v8gm5"]
+[ext_resource type="FontFile" uid="uid://dnjaetxs8shbd" path="res://fonts/Spacecat-Regular.ttf" id="9_w6yqi"]
+[ext_resource type="AudioStream" uid="uid://bi8qjucat2s5" path="res://Audio Assets/Sound/Suck.wav" id="10_2j4wx"]
+[ext_resource type="AudioStream" uid="uid://bi8qjucat2s5" path="res://Audio Assets/Sound/Suck.wav" id="10_i34c0"]
+[ext_resource type="AudioStream" uid="uid://bl2o800sofl3j" path="res://Audio Assets/Sound/ReadyToSuck.wav" id="10_whfq1"]
+[ext_resource type="AudioStream" uid="uid://cwtg4sjye8j73" path="res://Audio Assets/Sound/TestSound.wav" id="11_ag1xx"]
+[ext_resource type="AudioStream" uid="uid://dmeee0e2t2gfy" path="res://Audio Assets/Sound/Destroyed.wav" id="12_d7ris"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_0rnqc"]
 radius = 25.02
+
+[sub_resource type="Animation" id="Animation_6g4ru"]
+resource_name = "Suckin"
+loop_mode = 1
+step = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0.108, 0.112), Vector2(0.018, 0.019)]
+}
+
+[sub_resource type="Animation" id="Animation_v84l6"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0.1, 0.106)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_8mr3g"]
+_data = {
+"RESET": SubResource("Animation_v84l6"),
+"Suckin": SubResource("Animation_6g4ru")
+}
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_j830m"]
 radius = 64.9384
@@ -36,6 +85,7 @@ orbitBehavior = 3
 [node name="black_hole_rotation" type="Node2D" parent="."]
 
 [node name="BlackHoleSprite" type="Sprite2D" parent="black_hole_rotation"]
+self_modulate = Color(0, 0, 0, 1)
 z_index = 1
 scale = Vector2(0.108, 0.108)
 texture = ExtResource("3_lpl44")
@@ -43,6 +93,29 @@ texture = ExtResource("3_lpl44")
 [node name="BlackHoleSpriteInner" type="Sprite2D" parent="black_hole_rotation/BlackHoleSprite"]
 z_index = 2
 texture = ExtResource("4_f0cjg")
+
+[node name="SuckSprite2" type="Sprite2D" parent="."]
+modulate = Color(1, 1, 1, 0.255)
+self_modulate = Color(1, 1, 1, 0.712)
+position = Vector2(0, -1.5)
+scale = Vector2(0.105, 0.111)
+texture = ExtResource("5_0vwnl")
+
+[node name="suck_png" type="Node2D" parent="."]
+modulate = Color(1, 1, 1, 0.304)
+self_modulate = Color(1, 1, 1, 0.58)
+scale = Vector2(1.5, 1.5)
+
+[node name="SuckSprite" type="Sprite2D" parent="suck_png"]
+position = Vector2(0, -0.999999)
+scale = Vector2(0.1, 0.106)
+texture = ExtResource("5_0vwnl")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="suck_png/SuckSprite"]
+libraries = {
+"": SubResource("AnimationLibrary_8mr3g")
+}
+autoplay = "Suckin"
 
 [node name="Voidshape3" type="Sprite2D" parent="."]
 z_index = 3
@@ -66,6 +139,45 @@ shape = SubResource("CircleShape2D_t4ds6")
 
 [node name="CollectedPlanets" type="Node2D" parent="."]
 script = ExtResource("6_htful")
+
+[node name="SuckSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("10_2j4wx")
+
+[node name="SuckSoundEnd" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("9_v8gm5")
+
+[node name="SuckSoundLoop" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("10_i34c0")
+
+[node name="PlanetPop" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("8_p4mv1")
+
+[node name="Unstuck" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("9_aceth")
+
+[node name="ReadyToSuck" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("10_whfq1")
+
+[node name="TEST" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("11_ag1xx")
+
+[node name="Destroyed" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("12_d7ris")
+
+[node name="ClickSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_q17ko")
+
+[node name="Label" type="Label" parent="."]
+visible = false
+offset_left = -137.0
+offset_top = 90.0
+offset_right = 143.0
+offset_bottom = 124.0
+theme_override_fonts/font = ExtResource("9_w6yqi")
+text = "I wanted to make a pause meny but I couldn't fix it.
+       The game is stuck now, you have to reboot :)
+
+                                                      (c) M for Mediocre"
 
 [connection signal="body_entered" from="KeepPlanetArea2D" to="." method="_on_keep_planet_area_2d_body_entered"]
 [connection signal="body_exited" from="KeepPlanetArea2D" to="." method="_on_keep_planet_area_2d_body_exited"]

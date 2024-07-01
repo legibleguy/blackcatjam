@@ -46,7 +46,7 @@ func _on_exit_orbit(body):
 func _draw():
 	if orbits.size() > 0:
 		draw_circle(_get_curr_orbit().position - position, 24, Color.RED)
-		
+		$ReadyToBeSucked.play()
 		var pastTargetPoint : bool = (_get_curr_orbit().position + (_get_curr_orbit().position.direction_to(position) * _get_curr_orbit().get_orbit_radius() * awayFromCenter)).distance_to(_get_curr_orbit().position) < position.distance_to(_get_curr_orbit().position)
 		var col = Color.DEEP_PINK if pastTargetPoint else Color.GREEN
 		

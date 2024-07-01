@@ -27,6 +27,8 @@ func _process(delta):
 		var str_mins : String = str("%0*d" % [2, minutes])
 		var str_secs : String = str("%0*d" % [2, seconds])
 		$CanvasLayer/VBoxContainer/TimeLabel.text = str_mins + ":" + str_secs
+		
+		
 
 func pause_requested():
 		$GameOverTimer.paused = true

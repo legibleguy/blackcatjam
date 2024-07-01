@@ -51,7 +51,7 @@
 [ext_resource type="Texture2D" uid="uid://bbc3re26e5roe" path="res://artstuff/cutscenes/voidcat_cs11_1.png" id="32_ov5va"]
 [ext_resource type="Texture2D" uid="uid://l0sxi7ihn8pi" path="res://artstuff/cutscenes/voidcat_cs11_2.png" id="33_4irg0"]
 [ext_resource type="Texture2D" uid="uid://dhi5u4f2xd74g" path="res://artstuff/cutscenes/voidcat_cs11_3.png" id="34_wb5pg"]
-[ext_resource type="AudioStream" uid="uid://cr2gs775xj7pb" path="res://Audio Assets/Music/Main theme/Black Cat while in Space.mp3" id="51_awuji"]
+[ext_resource type="AudioStream" uid="uid://dr6odmdlyqca" path="res://Audio Assets/Music/Main theme/Black Cat while in Space.wav" id="52_enh1k"]
 
 [sub_resource type="AnimatedTexture" id="AnimatedTexture_55ku6"]
 frames = 13
@@ -324,4 +324,5 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("51_awuji")
+stream = ExtResource("52_enh1k")
+bus = &"Music"
